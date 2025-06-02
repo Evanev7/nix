@@ -1,0 +1,29 @@
+{
+  "redhat.telemetry.enabled": false,
+  "git.openRepositoryInParentFolders": "never",
+  "dart.debugExternalPackageLibraries": false,
+  "dart.debugSdkLibraries": false,
+  "jupyter.askForKernelRestart": false,
+  "editor.formatOnSave": true,
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
+  "supermaven.enableFixWithSupermaven": false,
+  "files.readonlyInclude": {
+    "*/.cargo/registry/src/*/*.rs": true,
+    "*/lib/rustlib/src/rust/library/*/*.rs": true
+  },
+  "git.autofetch": true,
+  "editor.inlayHints.enabled": "offUnlessPressed",
+  "workbench.activityBar.location": "bottom",
+  "editor.fontLigatures": true,
+  "window.titleBarStyle": "custom",
+  "chat.commandCenter.enabled": false,
+  "workbench.preferredLightColorTheme": "Catppuccin Latte",
+  "workbench.preferredDarkColorTheme": "Catppuccin Frappé",
+  "workbench.iconTheme": "catppuccin-frappe",
+  "window.autoDetectColorScheme": true
+}
