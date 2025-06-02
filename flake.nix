@@ -127,15 +127,21 @@
     packages.${system}.configurate =
       nixpkgs.legacyPackages.${system}.writeShellScriptBin "configurate"
       ''
-        # If we error, crash out
+        #!/usr/bin/env bash
         set -e
         set -o pipefail
+        
+        
+        # Shows your changes
+        git diff -U0 '*.nix'
 
         # To the configuration!
         echo "Rebuild time"
         nix flake update
         sudo just nix &> nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
         just home &> home-switch.log || (cat home-switch.log | grep --color error && exit 1)
+        current=$(nixos-rebuild list-generations | grep current)
+        git commit -am "$current"
       '';
   };
 }
