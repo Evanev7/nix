@@ -113,9 +113,6 @@
       # Enable ZSA keyboard support
       hardware.keyboard.zsa.enable = true;
 
-      # Tell more things to run on wayland
-      environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
       # Enable flakes
       nix.settings.experimental-features = [
         "nix-command"

@@ -99,6 +99,11 @@
     };
   };
 
+  programs.vscode = {
+        enable = true;
+        package = pkgs.vscodium.fhs;
+        };
+
   home = {
     username = "typhon";
     homeDirectory = "/home/typhon";
