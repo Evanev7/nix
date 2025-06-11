@@ -26,6 +26,7 @@
     rawtherapee
     parsec-bin
     libreoffice
+    wineWowPackages.waylandFull
   ];
 
   cady = {
