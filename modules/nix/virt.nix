@@ -4,7 +4,8 @@
   pkgs,
   profile,
   ...
-}: {
+}:
+{
   options.cady.emulator = {
     enable = lib.mkEnableOption "Enables QEMU+KVM+virt-manager Emulator";
   };
@@ -15,10 +16,10 @@
       virtualisation.libvirtd = {
         enable = true;
         onBoot = "start";
-        qemu.vhostUserPackages = with pkgs; [virtiofsd];
+        qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
       };
       programs.virt-manager.enable = true;
-      users.users.${profile.username}.extraGroups = ["libvirtd"];
+      users.users.${profile.username}.extraGroups = [ "libvirtd" ];
     })
   ];
 }

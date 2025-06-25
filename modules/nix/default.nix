@@ -4,7 +4,8 @@
   config,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     ./nvidia.nix
     ./ports.nix
@@ -53,7 +54,7 @@
       # Sudoers change for wheel
       security.sudo.wheelNeedsPassword = false;
       security.sudo.configFile = "${profile.username} ALL=(ALL) NOPASSWD:ALL";
-      security.polkit.adminIdentities = [];
+      security.polkit.adminIdentities = [ ];
 
       # Allow unfree packages
       nixpkgs.config.allowUnfree = true;

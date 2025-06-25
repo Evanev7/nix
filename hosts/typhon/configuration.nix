@@ -4,7 +4,8 @@
   rootPath,
   inputs,
   ...
-}: {
+}:
+{
   cady = {
     defaults = true;
     # My modules!!
@@ -41,8 +42,8 @@
     bacon
     xdg-user-dirs
     just
-    vimix-cursors
     gparted
+    cachix
   ];
 
   services.fstrim.enable = true;
@@ -68,6 +69,16 @@
       (rootPath + /ssh/gtnh.key.pub)
       (rootPath + /ssh/muko.pub)
       (rootPath + /ssh/typhon.pub)
+    ];
+  };
+
+  nix.settings = {
+
+    substituters = [
+      "https://niri.cachix.org"
+    ];
+    trusted-public-keys = [
+      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
     ];
   };
 

@@ -3,7 +3,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   options.cady = {
     console = {
       defaults = lib.mkEnableOption "The Cady approved defaults for a snazzy console time";
@@ -70,15 +71,16 @@
           {
           }
           // (
-            if config.cady.console.starship.direnv
-            then {
-              custom.direnv = {
-                format = "[\\[direnv\\]]($style) ";
-                style = "fg:yellow dimmed";
-                when = "env | grep -E '^DIRENV_FILE='";
-              };
-            }
-            else {}
+            if config.cady.console.starship.direnv then
+              {
+                custom.direnv = {
+                  format = "[\\[direnv\\]]($style) ";
+                  style = "fg:yellow dimmed";
+                  when = "env | grep -E '^DIRENV_FILE='";
+                };
+              }
+            else
+              { }
           );
       };
     })

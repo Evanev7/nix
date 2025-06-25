@@ -1,11 +1,16 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 # Thanks sleepy@discourse.nixos.org!
 # Taken from https://discourse.nixos.org/t/declare-firefox-extensions-and-settings/36265/5
 {
   # Might eventually include extensions. Probably not though.
   options.cady = {
-    firefox = { 
+    firefox = {
       enable = lib.mkEnableOption "Firefox defaults";
       userChromePath = lib.mkOption {
         type = lib.types.path;
@@ -14,18 +19,19 @@
       extraPrefs = lib.mkOption {
         description = "Additional options for Firefox preferences, loaded globally.";
         type = lib.types.attrs;
-        default = {};
+        default = { };
       };
     };
   };
 
   config = lib.mkMerge [
     (lib.mkIf (config.cady.firefox.enable) {
-      
+
       # ---- sidebery is stored in firefox sync ----
-      # My own code, no longer sleepy. 
+      # My own code, no longer sleepy.
       # https://discourse.nixos.org/t/anyone-using-firefox-gnome-theme-successfully-with-nixos-home-manager/19248 massively helped!!
-      home.file.".mozilla/firefox/default/chrome/userChrome.css".source = config.cady.firefox.userChromePath;
+      home.file.".mozilla/firefox/default/chrome/userChrome.css".source =
+        config.cady.firefox.userChromePath;
 
       programs.firefox = {
         enable = true;

@@ -21,127 +21,139 @@
     foundryvtt.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    stylix,
-    nvf,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-    system = "x86_64-linux";
-    rootPath = ./.;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      stylix,
+      nvf,
+      ...
+    }@inputs:
+    let
+      inherit (self) outputs;
+      system = "x86_64-linux";
+      rootPath = ./.;
 
-    mkProfile = {
-      hostname,
-      username,
-      isNixos,
-      extraPkgs ? [],
-      extraHomePkgs ? [],
-    }: {
-      inherit
-        hostname
-        username
-        isNixos
-        extraPkgs
-        extraHomePkgs
-        ;
-    };
-
-    mkNixosConfiguration = profile:
-      nixpkgs.lib.nixosSystem {
-        specialArgs = {
+      mkProfile =
+        {
+          hostname,
+          username,
+          isNixos,
+          extraPkgs ? [ ],
+          extraHomePkgs ? [ ],
+        }:
+        {
           inherit
-            inputs
-            outputs
-            profile
-            rootPath
+            hostname
+            username
+            isNixos
+            extraPkgs
+            extraHomePkgs
             ;
         };
-        modules =
-          [
+
+      mkNixosConfiguration =
+        profile:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit
+              inputs
+              outputs
+              profile
+              rootPath
+              ;
+          };
+          modules = [
             (./hosts + "/${profile.hostname}" + /configuration.nix)
             (./hosts + "/${profile.hostname}" + /hardware-configuration.nix)
             ./modules/nix
             stylix.nixosModules.stylix
             ./stylix
-          ]
-          ++ profile.extraPkgs;
-      };
-
-    mkHomeConfiguration = profile:
-      home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
-        extraSpecialArgs = {
-          inherit
-            inputs
-            outputs
-            profile
-            rootPath
-            ;
-          unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
+          ] ++ profile.extraPkgs;
         };
-        modules =
-          [
+
+      mkHomeConfiguration =
+        profile:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${system};
+          extraSpecialArgs = {
+            inherit
+              inputs
+              outputs
+              profile
+              rootPath
+              ;
+            unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
+          };
+          modules = [
             ./modules/home
             (./hosts + "/${profile.hostname}" + /home.nix)
             stylix.homeModules.stylix
             nvf.homeManagerModules.default
             ./stylix
             ./stylix/home.nix
-          ]
-          ++ profile.extraHomePkgs;
+          ] ++ profile.extraHomePkgs;
+        };
+
+      muko = mkProfile {
+        hostname = "muko";
+        username = "muko";
+        isNixos = true;
+        extraPkgs = [
+        ];
+        extraHomePkgs = [ ];
       };
 
-    muko = mkProfile {
-      hostname = "muko";
-      username = "muko";
-      isNixos = true;
-      extraPkgs = [
-      ];
-      extraHomePkgs = [];
-    };
+      typhon = mkProfile {
+        hostname = "typhon";
+        username = "typhon";
+        isNixos = true;
+        extraPkgs = [
+          inputs.foundryvtt.nixosModules.foundryvtt
+        ];
+        extraHomePkgs = [ ];
+      };
+    in
+    {
+      nixosConfigurations = {
+        muko = mkNixosConfiguration muko;
+        typhon = mkNixosConfiguration typhon;
+      };
+      homeConfigurations = {
+        muko = mkHomeConfiguration muko;
+        typhon = mkHomeConfiguration typhon;
+      };
+      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
 
-    typhon = mkProfile {
-      hostname = "typhon";
-      username = "typhon";
-      isNixos = true;
-      extraPkgs = [
-        inputs.foundryvtt.nixosModules.foundryvtt
-      ];
-      extraHomePkgs = [];
-    };
-  in {
-    nixosConfigurations = {
-      muko = mkNixosConfiguration muko;
-      typhon = mkNixosConfiguration typhon;
-    };
-    homeConfigurations = {
-      muko = mkHomeConfiguration muko;
-      typhon = mkHomeConfiguration typhon;
-    };
-    formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
+      nixConfig = {
+        extra-substituters = [
+          "https://niri.cachix.org"
+        ];
+        extra-trusted-public-keys = [
+          "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
+        ];
+      };
 
-    # Broken rn. We fixing it slowly
-    packages.${system}.configurate =
-      nixpkgs.legacyPackages.${system}.writeShellScriptBin "configurate"
-      ''
-        #!/usr/bin/env bash
-        set -e
-        set -o pipefail
-        
-        
-        # Shows your changes
-        git diff -U0 '*.nix'
+      # Broken rn. We fixing it slowly
+      packages.${system}.configurate =
+        nixpkgs.legacyPackages.${system}.writeShellScriptBin "configurate"
+          ''
+            #!/usr/bin/env bash
+            set -e
+            set -o pipefail
 
-        # To the configuration!
-        echo "Rebuild time"
-        nix flake update
-        sudo just nix &> nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
-        just home &> home-switch.log || (cat home-switch.log | grep --color error && exit 1)
-        current=$(nixos-rebuild list-generations | grep current)
-        git commit -am "$current"
-      '';
-  };
+
+            # Shows your changes
+            git diff -U0 '*.nix'
+
+            # To the configuration!
+            echo "Rebuild time"
+            nix flake update
+            sudo just nix &> nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
+            just home &> home-switch.log || (cat home-switch.log | grep --color error && exit 1)
+            current=$(nixos-rebuild list-generations | grep True)
+            git commit -am "$current"
+          '';
+    };
 }

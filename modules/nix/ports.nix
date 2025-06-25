@@ -10,9 +10,8 @@
     ports = {
       enable = lib.mkEnableOption "Cady's funny port stuff (firewall config module.)";
       both = lib.mkOption {
-        default =
-          [
-          ];
+        default = [
+        ];
         example = [
           25565
           25566

@@ -4,7 +4,8 @@
   rootPath,
   inputs,
   ...
-}: {
+}:
+{
   cady = {
     defaults = true;
     # My modules!!

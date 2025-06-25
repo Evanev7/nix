@@ -1,9 +1,11 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   mono-font = {
     package = pkgs.nerd-fonts.comic-shanns-mono;
     name = "ComicShannsMono Nerd Font";
   };
-in {
+in
+{
   # Enable Stylix
   stylix = {
     enable = true;

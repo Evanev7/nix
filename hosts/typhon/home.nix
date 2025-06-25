@@ -3,15 +3,18 @@
   pkgs,
   rootPath,
   ...
-}: {
+}:
+{
   home.packages = with pkgs; [
     nixfmt-rfc-style
     (pkgs.makeDesktopItem {
       name = "discord";
-      exec = "env -u NIXOS_OZONE_WL ${pkgs.discord.override {
-        withVencord = true;
-        withOpenASAR = true;
-      }}/bin/discord --use-gl=desktop";
+      exec = "env -u NIXOS_OZONE_WL ${
+        pkgs.discord.override {
+          withVencord = true;
+          withOpenASAR = true;
+        }
+      }/bin/discord --use-gl=desktop";
       desktopName = "Discord";
       icon = "${pkgs.tela-circle-icon-theme}/share/icons/Tela-circle/scalable/apps/discord.svg";
     })
@@ -27,6 +30,7 @@
     parsec-bin
     libreoffice
     wineWowPackages.waylandFull
+    prismlauncher
   ];
 
   cady = {
@@ -101,9 +105,9 @@
   };
 
   programs.vscode = {
-        enable = true;
-        package = pkgs.vscodium.fhs;
-        };
+    enable = true;
+    package = pkgs.vscodium.fhs;
+  };
 
   home = {
     username = "typhon";
