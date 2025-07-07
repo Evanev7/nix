@@ -11,6 +11,7 @@
     ./ports.nix
     ./desktop.nix
     ./virt.nix
+    ./tailscale.nix
   ];
 
   options.cady = {

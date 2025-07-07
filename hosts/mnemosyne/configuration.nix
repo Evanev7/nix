@@ -21,6 +21,7 @@
     ];
     ssh.enable = true;
     nextdns.enable = true;
+    tailscale.enable = true;
     # Desktop Environment
     desktop = "Plasma";
     autoUpdate = true;
