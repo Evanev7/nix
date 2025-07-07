@@ -16,7 +16,6 @@
     # obsidian-nvim.url = "github:epwalsh/obsidian.nvim";
     stylix.url = "github:danth/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
-    stylix.inputs.home-manager.follows = "home-manager";
     foundryvtt.url = "github:reckenrode/nix-foundryvtt";
     foundryvtt.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -135,7 +134,6 @@
         ];
       };
 
-      # Broken rn. We fixing it slowly
       packages.${system}.configurate =
         nixpkgs.legacyPackages.${system}.writeShellScriptBin "configurate"
           ''
@@ -145,14 +143,14 @@
 
 
             # Shows your changes
-            git diff -U0 '*.nix'
+            git diff -U0 *.nix
 
             # To the configuration!
             echo "Rebuild time"
             nix flake update
             sudo just nix &> nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
             just home &> home-switch.log || (cat home-switch.log | grep --color error && exit 1)
-            current=$(nixos-rebuild list-generations | grep True)
+            current=$(nixos-rebuild list-generations | grep True | cut -c -31)
             git commit -am "$current"
           '';
     };

@@ -55,6 +55,7 @@
       security.sudo.wheelNeedsPassword = false;
       security.sudo.configFile = "${profile.username} ALL=(ALL) NOPASSWD:ALL";
       security.polkit.adminIdentities = [ ];
+      systemd.user.extraConfig = "DefaultNoNewPrivileges=no";
 
       # Allow unfree packages
       nixpkgs.config.allowUnfree = true;
