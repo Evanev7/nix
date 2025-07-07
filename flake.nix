@@ -113,15 +113,26 @@
         ];
         extraHomePkgs = [ ];
       };
+
+      mnemosyne = mkProfile {
+        hostname = "mnemosyne";
+        username = "mnemosyne";
+        isNixos = true;
+        extraPkgs = [
+        ];
+        extraHomePkgs = [ ];
+      };
     in
     {
       nixosConfigurations = {
         muko = mkNixosConfiguration muko;
         typhon = mkNixosConfiguration typhon;
+        mnemosyne = mkNixosConfiguration mnemosyne;
       };
       homeConfigurations = {
         muko = mkHomeConfiguration muko;
         typhon = mkHomeConfiguration typhon;
+        mnemosyne = mkHomeConfiguration mnemosyne;
       };
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
 

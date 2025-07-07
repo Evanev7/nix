@@ -3,6 +3,7 @@
   profile,
   rootPath,
   inputs,
+  config,
   ...
 }:
 {
@@ -48,21 +49,6 @@
   services.fstrim.enable = true;
   systemd.services.NetworkManager-wait-online.enable = false;
 
-  services.foundryvtt = {
-    enable = true;
-    minifyStaticFiles = true;
-    package = inputs.foundryvtt.packages.${pkgs.system}.foundryvtt_12.overrideAttrs {
-      build = "331";
-    };
-  };
-  # Enable steam and stuff
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    localNetworkGameTransfers.openFirewall = true;
-  };
-
   users.users.${profile.username} = {
     openssh.authorizedKeys.keyFiles = [
       (rootPath + /ssh/gtnh.key.pub)
@@ -70,6 +56,7 @@
       (rootPath + /ssh/typhon.pub)
     ];
   };
+
 
   nix.settings = {
 
@@ -85,8 +72,12 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # Use old kernel, for GT730 support.
+  boot.kernelPackages = pkgs.linuxPackages_6_1;
+  hardware.nvidia = {
+        modesetting.enable = false;
+        package = config.boot.kernelPackages.nvidiaPackages.legacy_390; 
+        };
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "mnemosyne";

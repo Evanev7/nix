@@ -8,6 +8,9 @@
   options.cady.nvidia.enable = lib.mkEnableOption "Nvidia Graphics Settings";
 
   config = lib.mkIf config.cady.nvidia.enable {
+    # Accept nvidia licenses
+    nixpkgs.config.nvidia.acceptLicense = true;
+    
     # Enable OpenGL
     hardware.graphics = {
       enable = true;
@@ -21,14 +24,14 @@
     # Seems like a good idea.
     hardware.enableAllFirmware = true;
     hardware.nvidia = {
-      # Modesetting is required
-      modesetting.enable = true;
+      # Modesetting is maybe required
+      modesetting.enable = lib.mkDefault true;
       nvidiaPersistenced = true;
 
       # These options are all experimental and buggy.
       # See https://nixos.wiki/wiki/Nvidia for more info
       powerManagement = {
-        enable = true;
+        enable = false;
       };
       open = false;
 
