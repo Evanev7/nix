@@ -39,6 +39,7 @@ in
     prismlauncher
     blender
     freecad-xwayland
+    youtube-music
   ];
 
   cady = {
