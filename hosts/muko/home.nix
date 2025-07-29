@@ -24,6 +24,9 @@
     keymapp
     parsec-bin
     vlc
+    tree
+    bat
+    youtube-music
   ];
 
   cady = {
