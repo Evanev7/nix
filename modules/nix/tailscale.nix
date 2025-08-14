@@ -1,14 +1,20 @@
-{ config, lib, pkgs, profile, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  profile,
+  ...
+}:
 let
   cfg = config.cady.tailscale;
 in
 {
-        options.cady.tailscale.enable = lib.mkEnableOption "Start Tailscale, but only after init";
-        config = lib.mkIf cfg.enable {
-                services.tailscale.enable = true;
-                systemd.services.tailscaled.wantedBy = lib.mkForce [];
+  options.cady.tailscale.enable = lib.mkEnableOption "Start Tailscale, but only after init";
+  config = lib.mkIf cfg.enable {
+    services.tailscale.enable = true;
+    systemd.services.tailscaled.wantedBy = lib.mkForce [ ];
 
-                systemd.user.services."start-tailscaled-graphical" = {
+    systemd.user.services."start-tailscaled-graphical" = {
       description = "Start Tailscale daemon after graphical session is ready";
       after = [ "graphical-session.target" ];
       wantedBy = [ "graphical-session.target" ];
@@ -19,7 +25,7 @@ in
       };
     };
 
-                security.sudo.extraRules = [
+    security.sudo.extraRules = [
       {
         users = [ profile.username ];
         commands = [
@@ -31,8 +37,5 @@ in
       }
     ];
 
-
-
-        };
+  };
 }
-

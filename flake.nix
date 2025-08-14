@@ -69,7 +69,8 @@
             ./modules/nix
             stylix.nixosModules.stylix
             ./stylix
-          ] ++ profile.extraPkgs;
+          ]
+          ++ profile.extraPkgs;
         };
 
       mkHomeConfiguration =
@@ -92,7 +93,8 @@
             nvf.homeManagerModules.default
             ./stylix
             ./stylix/home.nix
-          ] ++ profile.extraHomePkgs;
+          ]
+          ++ profile.extraHomePkgs;
         };
 
       muko = mkProfile {
@@ -124,7 +126,7 @@
       };
 
       maia = mkProfile {
-	hostname = "maia";
+        hostname = "maia";
         username = "maia";
         isNixos = true;
         extraPkgs = [ ];
