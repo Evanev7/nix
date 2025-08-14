@@ -38,7 +38,7 @@
       # A user profile is nice to have
       users.users.${profile.username} = {
         isNormalUser = true;
-        description = "Woah!! epic user account!!";
+        description = profile.username;
         extraGroups = [
           "networkmanager"
           "wheel"

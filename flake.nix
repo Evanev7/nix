@@ -122,17 +122,27 @@
         ];
         extraHomePkgs = [ ];
       };
+
+      maia = mkProfile {
+	hostname = "maia";
+        username = "maia";
+        isNixos = true;
+        extraPkgs = [ ];
+        extraHomePkgs = [ ];
+      };
     in
     {
       nixosConfigurations = {
         muko = mkNixosConfiguration muko;
         typhon = mkNixosConfiguration typhon;
         mnemosyne = mkNixosConfiguration mnemosyne;
+        maia = mkNixosConfiguration maia;
       };
       homeConfigurations = {
         muko = mkHomeConfiguration muko;
         typhon = mkHomeConfiguration typhon;
         mnemosyne = mkHomeConfiguration mnemosyne;
+        maia = mkHomeConfiguration maia;
       };
       formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
 
