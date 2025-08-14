@@ -9,7 +9,6 @@
   cady = {
     defaults = true;
     # My modules!!
-    nvidia.enable = true;
     ssh.enable = true;
     nextdns.enable = true;
     # Desktop Environment
@@ -33,7 +32,7 @@
     vimix-cursors
   ];
 
-  programs.nix-ld.enable = true;  
+  programs.nix-ld.enable = true;
 
   # Enable steam and stuff
   programs.steam = {
