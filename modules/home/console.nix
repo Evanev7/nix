@@ -13,6 +13,9 @@
         type = lib.types.attrs;
         default = {
           "n" = "nvim";
+          ".." = "cd ..";
+          "..." = "cd ../..";
+          "rgf" = "rg --files | rg";
         };
       };
       starship = {
