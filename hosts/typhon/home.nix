@@ -49,9 +49,6 @@ in
     };
     console = {
       defaults = true;
-      shellAliases = {
-        "n" = "nvim";
-      };
       starship = {
         enable = true;
         direnv = true;

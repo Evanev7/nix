@@ -36,10 +36,6 @@
     };
     console = {
       defaults = true;
-      # TODO: make a decision
-      shellAliases = {
-        "n" = "nvim";
-      };
       starship = {
         enable = true;
         direnv = true;

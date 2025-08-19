@@ -27,8 +27,27 @@
       programs.home-manager.enable = true;
       programs.git = {
         enable = true;
+        lfs.enable = true;
+        delta.enable = true;
         userEmail = lib.mkDefault "evanev7@gmail.com";
-        userName = lib.mkDefault "caedesyth";
+        userName = lib.mkDefault "Evan";
+        extraConfig = {
+          push = { autoSetupRemote = true; };
+          pull.rebase = true;
+          rebase.autoStash = true;
+          color.ui = "auto";
+          init.defaultBranch = "main";
+          commit.verbose = true;
+          rerere.enabled = true;
+          merge.conflictstyle = "zdiff3";
+          diff.algorithm = "histogram";
+          delta.navigate = true;
+          "url \"git@github.com:\"".insteadOf = "https://github.com/";
+          "url \"git@github.com:exo-explore/\"".insteadOf = "exo:";
+          "url \"git@github.com:evanev7/\"".insteadOf = "ev:";
+          core.compression = 9;
+          core.whitespace = "error";
+        };
       };
 
       # Move .gtkrc-2.0 out of home and into .config, in line with gtk 3 and 4.
