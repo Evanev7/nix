@@ -1,0 +1,114 @@
+/* NONE OF THIS IS PROPAGATED TO KAGI THIS IS JUST FOR VCS */
+:root {
+  /* Rose Pine Moon */
+  --base: #232136;
+  --surface: #2a273f;
+  --overlay: #393552;
+  --muted: #6e6a86;
+  --subtle: #908caa;
+  --text: #e0def4;
+  --love: #eb6f92;
+  --gold: #f6c177;
+  --rose: #ea9a97;
+  --pine: #3e8fb0;
+  --foam: #9ccfd8;
+  --iris: #c4a7e7;
+  --highlightLow: #2a283e;
+  --highlightMed: #44415a;
+  --highlightHigh: #56526e;
+  
+  /* merged with rose pine */
+  --font-main: monospace;
+  --color-primary: var(--text);
+  --color-primary_hover: var(--gold);
+  --page-text-color: var(--tex);
+  --background-color: var(--base);
+  --color-primary_visited: var(--love);
+  --search-result-title: var(--iris);
+  --search-result-title-hover: var(--pine);
+  --search-result-subtitle: var(--pine);
+  --search-result-content-text: var(--foam); /* could maybe be darker */
+  --color_link: var(--foam);
+  --footer-bg: var(--base);
+  --color-search-input: var(--highlightLow);
+  --inline-widget-bg: var(--base);
+  --search-result-date-new-bg: #var(--rose);
+  --related-item-bg: var(--base);
+  --search-result-date-bg: var(--base);
+  --m_sri_gap_color: var(--base);
+  --app-frame-bg: var(--base);
+  --nav_n_se_line: var(--rose);
+  
+  /* old vars
+  --font-main: monospace;
+  --color-primary: #ebdbb2;
+  --color-primary_hover: #fbf1c7;
+  --page-text-color: #ebdbb2;
+  --background-color: #1d2021;
+  --color-primary_visited: #b16286;
+  --search-result-title: #83a598;
+  --search-result-title-hover: #458588;
+  --search-result-subtitle: #458588;
+  --search-result-content-text: #a89984;
+  --color_link: #83a598;
+  --footer-bg: #1d2021;
+  --color-search-input: #3c3836;
+  --inline-widget-bg: #282828;
+  --search-result-date-new-bg: #d79921;
+  --related-item-bg: #282828;
+  --search-result-date-bg: #282828;
+  --m_sri_gap_color: #1d2021;
+  */
+}
+
+.btn.--yellow {
+  background: #d79921;
+}
+
+.app-header.app-content-box {
+  position: sticky;
+  top: 0;
+  z-index: 114;
+
+  /* From https://css.glass */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.quick-settings {
+  background: rgb(29,32,33,0.6);
+  border-bottom-left-radius: 16px;
+  border-top-left-radius: 16px;
+  box-shadow: 0 7px 10px #1d2021;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.footer.footer-landing,
+header.app-header.app-content-box,
+.__sri-title .__sri_title_link,
+.__sri-title .__sri_title_link:hover,
+.__srgi-title a,
+.__srgi-title a:hover {
+  border: 0;
+}
+
+.__sri-title {
+  margin-bottom: 0;
+}
+
+.__sri-url .__domain-favicon {
+  margin-right: 10px;
+}
+
+.__srgi-title a {
+  color: var(--search-result-subtitle);
+}
+
+.__sri-desc {
+  font-size: 0.7rem;
+}
+
+.results_meta {
+  display: none;
+}

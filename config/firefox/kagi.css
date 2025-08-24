@@ -1,0 +1,99 @@
+/* NONE OF THIS IS PROPAGATED TO KAGI THIS IS JUST FOR VCS */
+:root {
+  /* Chicago Valua */
+  --base00: #1e2a24;
+  --base01: #2a3b32;
+  --base02: #364c40;
+  --base03: #5f7368;
+  --base04: #8a9a91;
+  --base05: #a7b8af;
+  --base06: #c1cdc7;
+  --base07: #dbe3de;
+  --base08: #d7586e;
+  --base09: #e6b466;
+  --base0A: #dfe754;
+  --base0B: #59d678;
+  --base0C: #76dbd2;
+  --base0D: #4ed2d2;
+  --base0E: #a874e0;
+  --base0F: #c05a8f;
+  
+  /* base16 kagification */
+  --font-main: monospace;
+  --color-primary: var(--base01);
+  --landing-bg: var(--base00);
+  --color-primary_hover: var(--base03);
+  --page-text-color: var(--base06);
+  --background-color: var(--base00);
+  --color-primary_visited: var(--base05);
+  --search-result-title: var(--base05);
+  --search-result-title-hover: var(--base04);
+  --search-result-subtitle: var(--base02);
+  --search-result-content-text: var(--base03); /* could maybe be darker */
+  --search-result-url-link: var(--base04);
+  --color_link: var(--base02);
+  --footer-bg: var(--base00);
+  --color-search-input: var(--base01);
+  --inline-widget-bg: var(--base00);
+  --search-result-date-new-bg: var(--base06);
+  --related-item-bg: var(--base00);
+  --search-result-date-bg: var(--base00);
+  --m_sri_gap_color: var(--base00);
+  --app-frame-bg: var(--base00);
+  --app-text: var(--base06);
+  --nav_n_se_line: var(--base06);
+  --primary: var(--base06);
+}
+
+.btn.--yellow {
+  background: var(--base0A);
+}
+
+.app-header.app-content-box {
+  position: sticky;
+  top: 0;
+  z-index: 114;
+
+  /* From https://css.glass */
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.quick-settings {
+  background: rgb(29,32,33,0.6);
+  border-bottom-left-radius: 16px;
+  border-top-left-radius: 16px;
+  box-shadow: 0 7px 10px var(--base01);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.footer.footer-landing,
+header.app-header.app-content-box,
+.__sri-title .__sri_title_link,
+.__sri-title .__sri_title_link:hover,
+.__srgi-title a,
+.__srgi-title a:hover {
+  border: 0;
+}
+
+.__sri-title {
+  margin-bottom: 0;
+}
+
+.__sri-url .__domain-favicon {
+  margin-right: 10px;
+}
+
+.__sri-desc {
+  font-size: 0.7rem;
+}
+
+.results_meta {
+  display: none;
+}
+
+.filter-item {
+  background-color: var(--background-color);
+  border: 1px solid var(--primary-100) !important;
+}
