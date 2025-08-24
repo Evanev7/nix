@@ -32,6 +32,26 @@
     vimix-cursors
   ];
 
+  # Hibernation fix
+  systemd.services.wifi-sleep-workaround = {
+    description = "Unload mt7925e WiFi driver before sleep.target";
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.kmod}/bin/modprobe -r mt7925e";
+    };
+    requiredBy = [ "sleep.target" ];
+    before = [ "sleep.target" ];
+  };
+  systemd.services.wifi-sleep-workaround-2 = {
+    description = "Reload mt7925e WiFi driver after sleep.target";
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.kmod}/bin/modprobe mt7925e";
+    };
+    wantedBy = [ "sleep.target" ];
+    after = [ "sleep.target" ];
+  };
+
   programs.nix-ld.enable = true;
 
   # Enable steam and stuff

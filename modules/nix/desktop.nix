@@ -16,17 +16,9 @@
       default = "Gnome";
       description = "Cady style preconfigured DE (Only Gnome or Plasma for now)";
     };
-    remote.enable = lib.mkEnableOption "Enable XRDP";
   };
 
   config = lib.mkMerge [
-    (lib.mkIf (config.cady.remote.enable) {
-      # services.sunshine = {
-      #   enable = true;
-      #   openFirewall = true;
-      #   capSysAdmin = true;
-      # };
-    })
     (lib.mkIf (config.cady.desktop == "Gnome") {
       # Enable the X11 windowing system and disable xterm.
       services.xserver = {
@@ -83,14 +75,8 @@
 
     (lib.mkIf (config.cady.desktop == "Plasma") {
 
-      # Enable the X11 windowing system and disable xterm.
-      services.xserver = {
-        enable = true;
-        excludePackages = with pkgs; [ xterm ];
-      };
-
       # Enable KDE Plasma
-      # services.displayManager.sddm.enable = true;
+      services.displayManager.sddm = { enable = true; wayland.enable = true; };
       services.desktopManager.plasma6.enable = true;
 
       # Plasma Packages
@@ -99,6 +85,8 @@
         with kdePackages;
         [
           plasma-browser-integration
+          kolourpaint
+          sddm-kcm
         ];
 
       environment.plasma6.excludePackages = with pkgs.kdePackages; [
