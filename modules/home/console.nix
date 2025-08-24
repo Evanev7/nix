@@ -63,7 +63,9 @@
         userEmail = lib.mkDefault "evanev7@gmail.com";
         userName = lib.mkDefault "Evan";
         extraConfig = {
-          push = { autoSetupRemote = true; };
+          push = {
+            autoSetupRemote = true;
+          };
           pull.rebase = true;
           rebase.autoStash = true;
           color.ui = "auto";
@@ -80,7 +82,6 @@
           core.whitespace = "error";
         };
       };
-
 
       programs.tmux = {
         enable = true;
@@ -99,51 +100,50 @@
         ];
       };
 
-    programs.lazygit = {
+      programs.lazygit = {
         enable = true;
         settings = {
-                git.paging = {
-                        colorArg = "always";
-                        pager = "delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format=\"lazygit-edit://{path}:{line}\"";
-                };
-                gui.nerdFontsVersion = "3";
-                keybinding.universal = {
-                        prevItem-alt = "l";
-                        nextItem-alt = "k";
-                        scrollLeft = "J";
-                        scrollRight = "'";
-                        prevBlock-alt = "j";
-                        nextBlock-alt = ";";
-                        scrollUpMain-alt1 = "L";
-                        scrollDownMain-alt1 = "K";
-                };
-                commits = {
-                        moveDownCommit = "<c-k>";
-                        moveUpCommit = "<c-l>";
-                        openLogMenu = "";
-                };
+          git.paging = {
+            colorArg = "always";
+            pager = "delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format=\"lazygit-edit://{path}:{line}\"";
+          };
+          gui.nerdFontsVersion = "3";
+          keybinding.universal = {
+            prevItem-alt = "l";
+            nextItem-alt = "k";
+            scrollLeft = "J";
+            scrollRight = "'";
+            prevBlock-alt = "j";
+            nextBlock-alt = ";";
+            scrollUpMain-alt1 = "L";
+            scrollDownMain-alt1 = "K";
+          };
+          commits = {
+            moveDownCommit = "<c-k>";
+            moveUpCommit = "<c-l>";
+            openLogMenu = "";
+          };
 
         };
-    };
+      };
     })
     (lib.mkIf (config.cady.console.defaults && config.cady.console.starship.enable) {
       programs.starship = {
         enable = true;
-        settings =
-          {
-          }
-          // (
-            if config.cady.console.starship.direnv then
-              {
-                custom.direnv = {
-                  format = "[\\[direnv\\]]($style) ";
-                  style = "fg:yellow dimmed";
-                  when = "env | grep -E '^DIRENV_FILE='";
-                };
-              }
-            else
-              { }
-          );
+        settings = {
+        }
+        // (
+          if config.cady.console.starship.direnv then
+            {
+              custom.direnv = {
+                format = "[\\[direnv\\]]($style) ";
+                style = "fg:yellow dimmed";
+                when = "env | grep -E '^DIRENV_FILE='";
+              };
+            }
+          else
+            { }
+        );
       };
     })
   ];

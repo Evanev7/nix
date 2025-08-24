@@ -58,7 +58,6 @@
     ];
   };
 
-
   nix.settings = {
 
     substituters = [
@@ -76,9 +75,9 @@
   # Use old kernel, for GT730 support.
   boot.kernelPackages = pkgs.linuxPackages_6_1;
   hardware.nvidia = {
-        modesetting.enable = false;
-        package = config.boot.kernelPackages.nvidiaPackages.legacy_390; 
-        };
+    modesetting.enable = false;
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_390;
+  };
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "mnemosyne";

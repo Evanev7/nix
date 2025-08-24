@@ -76,7 +76,10 @@
     (lib.mkIf (config.cady.desktop == "Plasma") {
 
       # Enable KDE Plasma
-      services.displayManager.sddm = { enable = true; wayland.enable = true; };
+      services.displayManager.sddm = {
+        enable = true;
+        wayland.enable = true;
+      };
       services.desktopManager.plasma6.enable = true;
 
       # Plasma Packages

@@ -86,7 +86,8 @@
               "layout.css.has-selector.enabled" = true;
               "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
               "browser.tabs.allow_transparent_browser" = true;
-            } // config.cady.firefox.extraPrefs;
+            }
+            // config.cady.firefox.extraPrefs;
           };
         };
 
