@@ -10,7 +10,7 @@
     defaults = true;
     # My modules!!
     ssh.enable = true;
-    nextdns.enable = true;
+    #nextdns.enable = true;
     # Desktop Environment
     desktop = "Plasma";
     autoUpdate = true;

@@ -9,6 +9,7 @@
     # Check here https://github.com/NotAShelf/nvf/blob/main/configuration.nix
     programs.nvf = {
       enable = true;
+      enableManpages = true;
       settings.vim = {
         keymaps = [
           # remap hjkl to jkl;
@@ -100,10 +101,10 @@
           clang.enable = true;
           python.enable = true;
           zig.enable = true;
-          markdown.enable = true;
           lua.enable = true;
           bash.enable = true;
           css.enable = true;
+          go.enable = true;
         };
       };
     };

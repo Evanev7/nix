@@ -15,13 +15,6 @@
   config = lib.mkMerge [
     (lib.mkIf config.cady.home.defaults {
       nixpkgs.config.allowUnfree = true;
-      # QEMU + KVM autostart, see nix/common.nix for extra setup.
-      dconf.settings = {
-        "org/virt-manager/virt-manager/connections" = {
-          autoconnect = [ "qemu:///system" ];
-          uris = [ "qemu:///system" ];
-        };
-      };
 
       # Enable home-manager
       programs.home-manager.enable = true;

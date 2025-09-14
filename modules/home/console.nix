@@ -16,6 +16,7 @@
           ".." = "cd ..";
           "..." = "cd ../..";
           "rgf" = "rg --files | rg";
+          "tree" = "rg --files | ${pkgs.tree}/bin/tree -CF --dirsfirst --fromfile | sed -e 's/└/╚/g' -e 's/│/║/g' -e 's/─/═/g' -e 's/├/╠/g'";
         };
       };
       starship = {
@@ -28,6 +29,15 @@
     (lib.mkIf config.cady.console.defaults {
 
       home.packages = with pkgs; [ delta ];
+      home.sessionVariables = {
+        EDITOR = "";
+        VISUAL = "nvim";
+        # might switch to bat
+        MANPAGER = "nvim +Man!";
+        MANWIDTH = 999;
+      };
+
+
 
       programs.bash = {
         enable = true;
@@ -87,7 +97,6 @@
         enable = true;
         mouse = true;
         extraConfig = ''
-          set -g @sidebar-tree-command 'tree -C'
         '';
         baseIndex = 1;
         historyLimit = 100000;
