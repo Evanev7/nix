@@ -101,8 +101,7 @@
         hostname = "muko";
         username = "muko";
         isNixos = true;
-        extraPkgs = [
-        ];
+        extraPkgs = [ ];
         extraHomePkgs = [ ];
       };
 
@@ -120,8 +119,7 @@
         hostname = "mnemosyne";
         username = "mnemosyne";
         isNixos = true;
-        extraPkgs = [
-        ];
+        extraPkgs = [ ];
         extraHomePkgs = [ ];
       };
 

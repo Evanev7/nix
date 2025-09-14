@@ -7,16 +7,9 @@
 {
   home.packages = with pkgs; [
     nixfmt-rfc-style
-    (pkgs.makeDesktopItem {
-      name = "discord";
-      exec = "env -u NIXOS_OZONE_WL ${
-        pkgs.discord.override {
-          withOpenASAR = true;
-          withVencord = true;
-        }
-      }/bin/discord --use-gl=desktop";
-      desktopName = "Discord";
-      icon = "${pkgs.tela-circle-icon-theme}/share/icons/Tela-circle/scalable/apps/discord.svg";
+    (discord.override {
+        withOpenASAR = true;
+        withVencord = true;
     })
     gimp
     obsidian
