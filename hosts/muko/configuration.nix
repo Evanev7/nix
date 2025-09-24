@@ -24,7 +24,6 @@
     home-manager
     bottom
     ripgrep
-    fd
     lazygit
     bacon
     xdg-user-dirs

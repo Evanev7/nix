@@ -23,7 +23,6 @@
     home-manager
     bottom
     ripgrep
-    fd
     lazygit
     bacon
     xdg-user-dirs
@@ -31,7 +30,12 @@
     thunderbird
     vimix-cursors
   ];
-
+  # microphone fix
+  services.pipewire.wireplumber.extraConfig.no-ucm = {
+    "monitor.alsa.properties" = {
+      "alsa.use-ucm" = false;
+    };
+  };
   # Hibernation fix
   systemd.services.wifi-sleep-workaround = {
     description = "Unload mt7925e WiFi driver before sleep.target";

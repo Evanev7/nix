@@ -34,24 +34,6 @@
       system = "x86_64-linux";
       rootPath = ./.;
 
-      mkProfile =
-        {
-          hostname,
-          username,
-          isNixos,
-          extraPkgs ? [ ],
-          extraHomePkgs ? [ ],
-        }:
-        {
-          inherit
-            hostname
-            username
-            isNixos
-            extraPkgs
-            extraHomePkgs
-            ;
-        };
-
       mkNixosConfiguration =
         profile:
         nixpkgs.lib.nixosSystem {
@@ -97,7 +79,7 @@
           ++ profile.extraHomePkgs;
         };
 
-      muko = mkProfile {
+      muko = {
         hostname = "muko";
         username = "muko";
         isNixos = true;
@@ -105,7 +87,7 @@
         extraHomePkgs = [ ];
       };
 
-      typhon = mkProfile {
+      typhon = {
         hostname = "typhon";
         username = "typhon";
         isNixos = true;
@@ -115,7 +97,7 @@
         extraHomePkgs = [ ];
       };
 
-      mnemosyne = mkProfile {
+      mnemosyne = {
         hostname = "mnemosyne";
         username = "mnemosyne";
         isNixos = true;
@@ -123,7 +105,7 @@
         extraHomePkgs = [ ];
       };
 
-      maia = mkProfile {
+      maia = {
         hostname = "maia";
         username = "maia";
         isNixos = true;
