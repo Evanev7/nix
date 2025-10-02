@@ -37,14 +37,16 @@
     };
   };
   # Hibernation fix
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+/*
   systemd.services.wifi-sleep-workaround = {
-    description = "Unload mt7925e WiFi driver before sleep.target";
+    description = "Unload mt7925e WiFi driver before systemd-suspend.service";
     serviceConfig = {
       Type = "oneshot";
       ExecStart = "${pkgs.kmod}/bin/modprobe -r mt7925e";
     };
     requiredBy = [ "sleep.target" ];
-    before = [ "sleep.target" ];
+    before = [ "systemd-suspend.service" ];
   };
   systemd.services.wifi-sleep-workaround-2 = {
     description = "Reload mt7925e WiFi driver after sleep.target";
@@ -53,8 +55,11 @@
       ExecStart = "${pkgs.kmod}/bin/modprobe mt7925e";
     };
     wantedBy = [ "sleep.target" ];
-    after = [ "sleep.target" ];
+    after = [ "systemd-suspend.service" ];
   };
+*/
+
+   
 
   programs.nix-ld.enable = true;
 
