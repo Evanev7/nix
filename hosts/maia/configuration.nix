@@ -10,6 +10,7 @@
     defaults = true;
     # My modules!!
     ssh.enable = true;
+    tailscale.enable = true;
     #nextdns.enable = true;
     # Desktop Environment
     desktop = "Plasma";
@@ -27,7 +28,8 @@
     bacon
     xdg-user-dirs
     just
-    thunderbird
+    unzip
+
     vimix-cursors
   ];
   # microphone fix
@@ -38,28 +40,6 @@
   };
   # Hibernation fix
   boot.kernelPackages = pkgs.linuxPackages_latest;
-/*
-  systemd.services.wifi-sleep-workaround = {
-    description = "Unload mt7925e WiFi driver before systemd-suspend.service";
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.kmod}/bin/modprobe -r mt7925e";
-    };
-    requiredBy = [ "sleep.target" ];
-    before = [ "systemd-suspend.service" ];
-  };
-  systemd.services.wifi-sleep-workaround-2 = {
-    description = "Reload mt7925e WiFi driver after sleep.target";
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.kmod}/bin/modprobe mt7925e";
-    };
-    wantedBy = [ "sleep.target" ];
-    after = [ "systemd-suspend.service" ];
-  };
-*/
-
-   
 
   programs.nix-ld.enable = true;
 
@@ -69,24 +49,9 @@
     localNetworkGameTransfers.openFirewall = true;
   };
 
-  users.users.${profile.username} = {
-    openssh.authorizedKeys.keyFiles = [
-      (rootPath + /ssh/gtnh.key.pub)
-      (rootPath + /ssh/muko.pub)
-      (rootPath + /ssh/typhon.pub)
-      (rootPath + /ssh/maia.pub)
-    ];
-  };
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  # Enable KWallet automatically
-  security.pam.services.kwallet = {
-    name = "kdewallet";
-    enableKwallet = true;
-  };
 
   system.stateVersion = "25.05"; # Don't change it!!!
 }

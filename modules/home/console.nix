@@ -16,7 +16,8 @@
           ".." = "cd ..";
           "..." = "cd ../..";
           "rgf" = "rg --files | rg";
-          "tree" = "rg --files | ${pkgs.tree}/bin/tree -CF --dirsfirst --fromfile | sed -e 's/└/╚/g' -e 's/│/║/g' -e 's/─/═/g' -e 's/├/╠/g'";
+          "tree" =
+            "rg --files | ${pkgs.tree}/bin/tree -CF --dirsfirst --fromfile | sed -e 's/└/╚/g' -e 's/│/║/g' -e 's/─/═/g' -e 's/├/╠/g'";
         };
       };
       starship = {
@@ -36,8 +37,6 @@
         MANPAGER = "nvim +Man!";
         MANWIDTH = 999;
       };
-
-
 
       programs.bash = {
         enable = true;
@@ -96,8 +95,7 @@
       programs.tmux = {
         enable = true;
         mouse = true;
-        extraConfig = ''
-        '';
+        extraConfig = '''';
         baseIndex = 1;
         historyLimit = 100000;
         newSession = true;

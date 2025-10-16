@@ -27,7 +27,7 @@
     let
       inherit (self) outputs;
       system = "x86_64-linux";
-      flakeroot = ./.;
+      flakeRoot = ./.;
 
       mkNixosConfiguration =
         profile:
@@ -37,13 +37,13 @@
               inputs
               outputs
               profile
-              rootPath
+              flakeRoot
               ;
           };
           modules = [
             "./${profile.hostname}.nix"
             /etc/nixos/hardware-configuration.nix
-          ] ++ (profile.extraPkgs ? [ ]);
+          ]);
         };
 
       mkHomeConfiguration =

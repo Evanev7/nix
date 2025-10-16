@@ -1,7 +1,8 @@
 {
-  pkgs,
   lib,
   config,
+  profile,
+  rootPath,
   ...
 }:
 {
@@ -68,19 +69,21 @@
         dnsovertls = "true";
       };
     })
-    (lib.mkIf (config.cady.ports.enable) (
+    (lib.mkIf config.cady.ports.enable (
       let
         both = config.cady.ports.both;
         tcp = config.cady.ports.tcp ++ lib.optionals config.cady.ssh.enable [ 9125 ];
         udp = config.cady.ports.udp;
       in
       {
-        networking.firewall.enable = true;
-        networking.firewall.allowedTCPPorts = both ++ tcp;
-        networking.firewall.allowedUDPPorts = both ++ udp;
+        networking.firewall = {
+          enable = true;
+          allowedTCPPorts = both ++ tcp;
+          allowedUDPPorts = both ++ udp;
+        };
       }
     ))
-    (lib.mkIf (config.cady.ssh.enable) ({
+    (lib.mkIf config.cady.ssh.enable {
       # Enable the OpenSSH daemon.
       services.openssh = {
         enable = true;
@@ -90,6 +93,14 @@
         };
         ports = [ 9125 ];
       };
-    }))
+      users.users.${profile.username} = {
+        openssh.authorizedKeys.keyFiles = [
+          (rootPath + /ssh/gtnh.key.pub)
+          (rootPath + /ssh/muko.pub)
+          (rootPath + /ssh/typhon.pub)
+          (rootPath + /ssh/maia.pub)
+        ];
+      };
+    })
   ];
 }

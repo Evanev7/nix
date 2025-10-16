@@ -92,6 +92,12 @@
           sddm-kcm
         ];
 
+      # Enable KWallet automatically
+      security.pam.services.kwallet = {
+        name = "kdewallet";
+        enableKwallet = true;
+      };
+
       environment.plasma6.excludePackages = with pkgs.kdePackages; [
         elisa
         kate
