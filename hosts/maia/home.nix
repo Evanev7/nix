@@ -21,6 +21,7 @@
     bat
     youtube-music
     snapshot
+    qbittorrent
   ];
 
   cady = {

@@ -68,10 +68,9 @@
       programs.git = {
         enable = true;
         lfs.enable = true;
-        delta.enable = true;
-        userEmail = lib.mkDefault "evanev7@gmail.com";
-        userName = lib.mkDefault "Evan";
-        extraConfig = {
+        settings = {
+          user.email = lib.mkDefault "evanev7@gmail.com";
+          user.name = lib.mkDefault "Evan";
           push = {
             autoSetupRemote = true;
           };
@@ -105,6 +104,11 @@
           better-mouse-mode
           sidebar
         ];
+      };
+
+      programs.delta = {
+        enable = true;
+        enableGitIntegration = true;
       };
 
       programs.lazygit = {
