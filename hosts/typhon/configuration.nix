@@ -19,10 +19,10 @@
       30000
     ];
     ssh.enable = true;
-    nextdns.enable = true;
-    tailscale.enable = true;
+    #nextdns.enable = true;
+    #tailscale.enable = true;
     # Desktop Environment
-    desktop = "Gnome";
+    desktop = "Plasma";
     autoUpdate = true;
   };
 
@@ -43,11 +43,9 @@
     xdg-user-dirs
     just
     gparted
-    cachix
   ];
 
   services.fstrim.enable = true;
-  systemd.services.NetworkManager-wait-online.enable = false;
 
   services.foundryvtt = {
     enable = true;
@@ -69,16 +67,6 @@
       (rootPath + /ssh/gtnh.key.pub)
       (rootPath + /ssh/muko.pub)
       (rootPath + /ssh/typhon.pub)
-    ];
-  };
-
-  nix.settings = {
-
-    substituters = [
-      "https://niri.cachix.org"
-    ];
-    trusted-public-keys = [
-      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
     ];
   };
 
