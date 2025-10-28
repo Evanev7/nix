@@ -61,9 +61,6 @@
       # Allow unfree packages
       nixpkgs.config.allowUnfree = true;
 
-      # Always should have a browser.
-      programs.firefox.enable = true;
-
       # Enable networking
       networking.networkmanager.enable = true;
 

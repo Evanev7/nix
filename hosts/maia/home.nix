@@ -7,28 +7,19 @@
 {
   home.packages = with pkgs; [
     nixfmt-rfc-style
-    (discord.override {
-      withOpenASAR = true;
-      withVencord = true;
-    })
     thunderbird
     gimp
     obsidian
     godot
     keymapp
-    parsec-bin
     vlc
     bat
-    youtube-music
     snapshot
     qbittorrent
+    floorp-bin
   ];
 
   cady = {
-    firefox = {
-      enable = true;
-      userChromePath = rootPath + /config/firefox/userChrome.css;
-    };
     console = {
       defaults = true;
       starship = {
