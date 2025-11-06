@@ -33,8 +33,6 @@
       home.sessionVariables = {
         EDITOR = "";
         VISUAL = "nvim";
-        # might switch to bat
-        MANPAGER = "nvim +Man!";
         MANWIDTH = 999;
       };
 
@@ -114,10 +112,12 @@
       programs.lazygit = {
         enable = true;
         settings = {
-          git.paging = {
-            colorArg = "always";
-            pager = "delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format=\"lazygit-edit://{path}:{line}\"";
-          };
+          git.pagers = [
+            {
+              colorArg = "always";
+              pager = "delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format=\"lazygit-edit://{path}:{line}\"";
+            }
+          ];
           gui.nerdFontsVersion = "3";
           keybinding.universal = {
             prevItem-alt = "l";
