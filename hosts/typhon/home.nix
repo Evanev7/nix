@@ -15,12 +15,11 @@ in
     nixfmt-rfc-style
     (pkgs.makeDesktopItem {
       name = "discord";
-      exec = "env -u NIXOS_OZONE_WL ${
+      exec = "${
         pkgs.discord.override {
-          withVencord = true;
           withOpenASAR = true;
         }
-      }/bin/discord --use-gl=desktop";
+      }/bin/discord";
       desktopName = "Discord";
       icon = "${pkgs.tela-circle-icon-theme}/share/icons/Tela-circle/scalable/apps/discord.svg";
     })
