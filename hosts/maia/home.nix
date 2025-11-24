@@ -22,6 +22,7 @@
     youtube-music
     snapshot
     qbittorrent
+    zed-editor
   ];
 
   cady = {
