@@ -7,10 +7,7 @@
 {
   home.packages = with pkgs; [
     nixfmt-rfc-style
-    (discord.override {
-      withOpenASAR = true;
-      withVencord = true;
-    })
+    discord
     thunderbird
     gimp
     obsidian
