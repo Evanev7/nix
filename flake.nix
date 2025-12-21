@@ -28,7 +28,7 @@
       inherit (self) outputs;
       system = "x86_64-linux";
       rootPath = ./.;
-      pkgs = import nixpkgs { inherit system; };
+      pkgs = nixpkgs.legacyPackages.${system};
 
       treefmtEval = inputs.treefmt-nix.lib.evalModule pkgs {
         projectRootFile = "flake.nix";
