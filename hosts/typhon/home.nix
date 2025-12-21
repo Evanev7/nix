@@ -4,25 +4,10 @@
   rootPath,
   ...
 }:
-let
-  freecad-xwayland = pkgs.writeShellScriptBin "freecad" ''
-    export QT_QPA_PLATFORM=xcb
-    exec ${pkgs.freecad}/bin/freecad "$@"
-  '';
-in
 {
   home.packages = with pkgs; [
     nixfmt-rfc-style
-    (pkgs.makeDesktopItem {
-      name = "discord";
-      exec = "${
-        pkgs.discord.override {
-          withOpenASAR = true;
-        }
-      }/bin/discord";
-      desktopName = "Discord";
-      icon = "${pkgs.tela-circle-icon-theme}/share/icons/Tela-circle/scalable/apps/discord.svg";
-    })
+    pkgs.discord
     google-chrome
     gimp
     obsidian
@@ -34,10 +19,8 @@ in
     rawtherapee
     parsec-bin
     libreoffice
-    wineWowPackages.waylandFull
     prismlauncher
     blender
-    freecad-xwayland
     youtube-music
   ];
 

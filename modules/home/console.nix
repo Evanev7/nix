@@ -141,20 +141,20 @@
     (lib.mkIf (config.cady.console.defaults && config.cady.console.starship.enable) {
       programs.starship = {
         enable = true;
-        settings = {
-        }
-        // (
-          if config.cady.console.starship.direnv then
-            {
-              custom.direnv = {
-                format = "[\\[direnv\\]]($style) ";
-                style = "fg:yellow dimmed";
-                when = "env | grep -E '^DIRENV_FILE='";
-              };
-            }
-          else
-            { }
-        );
+        settings =
+          { }
+          // (
+            if config.cady.console.starship.direnv then
+              {
+                custom.direnv = {
+                  format = "[\\[direnv\\]]($style) ";
+                  style = "fg:yellow dimmed";
+                  when = "env | grep -E '^DIRENV_FILE='";
+                };
+              }
+            else
+              { }
+          );
       };
     })
   ];

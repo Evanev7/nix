@@ -5,19 +5,14 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    # nixvim.url = "github:nix-community/nixvim";
-    # nixvim.inputs.nixpkgs.follows = "nixpkgs";
-    # nixvim.inputs.home-manager.follows = "home-manager";
-    nvf = {
-      url = "github:notashelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    # Potentially, nvf asks you to include
-    # obsidian-nvim.url = "github:epwalsh/obsidian.nvim";
+    nvf.url = "github:notashelf/nvf";
+    nvf.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
     foundryvtt.url = "github:reckenrode/nix-foundryvtt";
     foundryvtt.inputs.nixpkgs.follows = "nixpkgs";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -33,6 +28,16 @@
       inherit (self) outputs;
       system = "x86_64-linux";
       rootPath = ./.;
+      pkgs = import nixpkgs { inherit system; };
+
+      treefmtEval = inputs.treefmt-nix.lib.evalModule pkgs {
+        projectRootFile = "flake.nix";
+        programs = {
+          nixfmt.enable = true;
+          nixfmt.strict = true;
+          stylua.enable = true;
+        };
+      };
 
       mkNixosConfiguration =
         profile:
@@ -52,13 +57,13 @@
             stylix.nixosModules.stylix
             ./stylix
           ]
-          ++ profile.extraPkgs;
+          ++ profile.extraModules;
         };
 
       mkHomeConfiguration =
         profile:
         home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${system};
+          inherit pkgs;
           extraSpecialArgs = {
             inherit
               inputs
@@ -66,7 +71,6 @@
               profile
               rootPath
               ;
-            unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
           };
           modules = [
             ./modules/home
@@ -76,41 +80,39 @@
             ./stylix
             ./stylix/home.nix
           ]
-          ++ profile.extraHomePkgs;
+          ++ profile.extraHomeModules;
         };
 
       muko = {
         hostname = "muko";
         username = "muko";
         isNixos = true;
-        extraPkgs = [ ];
-        extraHomePkgs = [ ];
+        extraModules = [ ];
+        extraHomeModules = [ ];
       };
 
       typhon = {
         hostname = "typhon";
         username = "typhon";
         isNixos = true;
-        extraPkgs = [
-          inputs.foundryvtt.nixosModules.foundryvtt
-        ];
-        extraHomePkgs = [ ];
+        extraModules = [ inputs.foundryvtt.nixosModules.foundryvtt ];
+        extraHomeModules = [ ];
       };
 
       mnemosyne = {
         hostname = "mnemosyne";
         username = "mnemosyne";
         isNixos = true;
-        extraPkgs = [ ];
-        extraHomePkgs = [ ];
+        extraModules = [ ];
+        extraHomeModules = [ ];
       };
 
       maia = {
         hostname = "maia";
         username = "maia";
         isNixos = true;
-        extraPkgs = [ ];
-        extraHomePkgs = [ ];
+        extraModules = [ ];
+        extraHomeModules = [ ];
       };
     in
     {
@@ -126,15 +128,7 @@
         mnemosyne = mkHomeConfiguration mnemosyne;
         maia = mkHomeConfiguration maia;
       };
-      formatter.${system} = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
-
-      nixConfig = {
-        extra-substituters = [
-          "https://niri.cachix.org"
-        ];
-        extra-trusted-public-keys = [
-          "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
-        ];
-      };
+      formatter.${system} = treefmtEval.config.build.wrapper;
+      checks.${system}.formatting = treefmtEval.config.build.check inputs.self;
     };
 }

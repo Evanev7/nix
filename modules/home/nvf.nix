@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}:
+{ config, lib, ... }:
 {
   options.cady.console.useNvf = lib.mkEnableOption "some kinda neovim instance is around here";
   config = lib.mkIf config.cady.console.useNvf {

@@ -11,8 +11,7 @@
     ports = {
       enable = lib.mkEnableOption "Cady's funny port stuff (firewall config module.)";
       both = lib.mkOption {
-        default = [
-        ];
+        default = [ ];
         example = [
           25565
           25566
@@ -22,17 +21,13 @@
       };
       tcp = lib.mkOption {
         default = [ ];
-        example = [
-          80
-        ];
+        example = [ 80 ];
         type = lib.types.listOf lib.types.int;
         description = "Additional ports to open for TCP";
       };
       udp = lib.mkOption {
         default = [ ];
-        example = [
-          6969
-        ];
+        example = [ 6969 ];
         type = lib.types.listOf lib.types.int;
         description = "Additional ports to open for UDP";
       };

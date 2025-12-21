@@ -50,9 +50,7 @@
   services.foundryvtt = {
     enable = true;
     minifyStaticFiles = true;
-    package = inputs.foundryvtt.packages.${pkgs.system}.foundryvtt_12.overrideAttrs {
-      build = "331";
-    };
+    package = inputs.foundryvtt.packages.${pkgs.system}.foundryvtt_12.overrideAttrs { build = "331"; };
   };
   # Enable steam and stuff
   programs.steam = {

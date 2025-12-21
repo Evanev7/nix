@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}:
+{ config, lib, ... }:
 {
   options.cady.tailscale.enable = lib.mkEnableOption "Start Tailscale, but only after init";
   config = lib.mkIf config.cady.tailscale.enable {
