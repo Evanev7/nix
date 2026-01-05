@@ -1,17 +1,11 @@
 {
-  lib,
   pkgs,
-  rootPath,
   ...
 }:
 {
   home.packages = with pkgs; [ nixfmt-rfc-style ];
 
   cady = {
-    firefox = {
-      enable = true;
-      userChromePath = rootPath + /config/firefox/userChrome.css;
-    };
     console = {
       defaults = true;
       starship = {
@@ -24,11 +18,6 @@
       defaults = true;
       userDirsOverride = true;
     };
-  };
-
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscodium.fhs;
   };
 
   home = {
