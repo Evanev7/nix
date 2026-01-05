@@ -37,6 +37,14 @@
     ];
   };
 
+  # cloudflare ddns
+  services.cloudflare-ddns = {
+    enable = true;
+    credentialsFile="/run/secrets/cloudflare_ddns_token";
+    ip6Domains = [ "www.caedy.net" "caedy.net" ];
+
+  };
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
