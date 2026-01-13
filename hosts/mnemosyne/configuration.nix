@@ -10,8 +10,7 @@
     # My modules!!
     # Firewall + port forwarding
     ports.enable = true;
-    ports.both = [
-    ];
+    ports.both = [ ];
     ssh.enable = true;
     # Desktop Environment
     desktop = "Plasma";
@@ -40,8 +39,11 @@
   # cloudflare ddns
   services.cloudflare-ddns = {
     enable = true;
-    credentialsFile="/run/secrets/cloudflare_ddns_token";
-    ip6Domains = [ "www.caedy.net" "caedy.net" ];
+    credentialsFile = "/run/secrets/cloudflare_ddns_token";
+    ip6Domains = [
+      "www.caedy.net"
+      "caedy.net"
+    ];
 
   };
 
@@ -60,7 +62,7 @@
   # Enable automatic login for the user.
   services.displayManager.autoLogin = {
     enable = true;
-    user = "mnemosyne"; 
+    user = "mnemosyne";
   };
 
   system.stateVersion = "25.05"; # Don't change it!

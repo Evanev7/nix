@@ -92,7 +92,7 @@
       programs.tmux = {
         enable = true;
         mouse = true;
-        extraConfig = '''';
+        extraConfig = "";
         baseIndex = 1;
         historyLimit = 100000;
         newSession = true;
