@@ -6,7 +6,7 @@
 }:
 {
   home.packages = with pkgs; [
-    nixfmt-rfc-style
+    nixfmt
     (pkgs.makeDesktopItem {
       name = "discord";
       exec = "env -u NIXOS_OZONE_WL ${

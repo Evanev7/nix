@@ -6,7 +6,7 @@
 }:
 {
   home.packages = with pkgs; [
-    nixfmt-rfc-style
+    nixfmt
     pkgs.discord
     google-chrome
     gimp
