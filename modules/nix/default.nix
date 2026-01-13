@@ -114,10 +114,14 @@
       hardware.keyboard.zsa.enable = true;
 
       # Enable flakes
-      nix.settings.experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
+      nix.settings = {
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
+        trusted-public-keys = [ "exo.cachix.org-1:okq7hl624TBeAR3kV+g39dUFSiaZgLRkLsFBCuJ2NZI=" ];
+        substituters = [ "https://exo.cachix.org" ];
+      };
     })
   ];
 }
