@@ -13,6 +13,7 @@
     foundryvtt.inputs.nixpkgs.follows = "nixpkgs";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   outputs =
@@ -111,7 +112,7 @@
         hostname = "maia";
         username = "maia";
         isNixos = true;
-        extraModules = [ ];
+        extraModules = [ inputs.nixos-hardware.nixosModules.framework-amd-ai-300-series ];
         extraHomeModules = [ ];
       };
     in
