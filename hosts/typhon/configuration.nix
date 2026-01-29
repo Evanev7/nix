@@ -47,6 +47,8 @@
 
   services.fstrim.enable = true;
 
+  programs.nix-ld.enable = true;
+
   services.foundryvtt = {
     enable = true;
     minifyStaticFiles = true;

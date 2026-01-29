@@ -1,9 +1,4 @@
-{
-  lib,
-  pkgs,
-  rootPath,
-  ...
-}:
+{ pkgs, rootPath, ... }:
 {
   home.packages = with pkgs; [
     nixfmt
@@ -22,6 +17,8 @@
     prismlauncher
     blender
     youtube-music
+    zed-editor
+    r2modman
   ];
 
   cady = {
