@@ -91,12 +91,11 @@
 
           rust = {
             enable = true;
-            crates.enable = true;
+            extensions.crates-nvim.enable = true;
           };
           nix.enable = true;
           clang.enable = true;
           python.enable = true;
-          zig.enable = true;
           lua.enable = true;
           bash.enable = true;
           css.enable = true;
