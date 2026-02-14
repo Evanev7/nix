@@ -40,6 +40,7 @@
       userDirsOverride = true;
     };
   };
+  services.easyeffects.enable = true;
 
   programs.vscode = {
     enable = true;
