@@ -66,9 +66,7 @@
     })
     (lib.mkIf config.cady.ports.enable (
       let
-        both = config.cady.ports.both;
-        tcp = config.cady.ports.tcp ++ lib.optionals config.cady.ssh.enable [ 9125 ];
-        udp = config.cady.ports.udp;
+        inherit (config.cady.ports) both tcp udp;
       in
       {
         networking.firewall = {
@@ -85,8 +83,11 @@
         settings = {
           PermitRootLogin = "no";
           PasswordAuthentication = false;
+          KbdInteractiveAuthentication = false;
         };
         ports = [ 9125 ];
+        openFirewall = true;
+
       };
       users.users.${profile.username} = {
         openssh.authorizedKeys.keyFiles = [

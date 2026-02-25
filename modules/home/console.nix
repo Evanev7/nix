@@ -90,6 +90,23 @@
         };
       };
 
+      programs.ssh = {
+        matchBlocks =
+          lib.genAttrs [ "typhon" "mnemosyne" "maia" "muko" ] (name: {
+            host = name;
+            user = name;
+            hostname = "${name}@${name}.caedy.net";
+            port = 9125;
+          })
+          // {
+            gtnh = {
+              host = "gtnh";
+              user = "opc";
+              hostname = "mc.caedy.net";
+            };
+          };
+      };
+
       programs.tmux = {
         enable = true;
         mouse = true;

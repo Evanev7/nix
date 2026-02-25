@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    stablepkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nvf.url = "github:notashelf/nvf";
@@ -29,7 +30,8 @@
       inherit (self) outputs;
       system = "x86_64-linux";
       rootPath = ./.;
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = inputs.nixpkgs.legacyPackages.${system};
+      stablePkgs = inputs.stablepkgs.legacyPackages.${system};
 
       treefmtEval = inputs.treefmt-nix.lib.evalModule pkgs {
         projectRootFile = "flake.nix";
@@ -49,6 +51,7 @@
               outputs
               profile
               rootPath
+              stablePkgs
               ;
           };
           modules = [
@@ -71,6 +74,7 @@
               outputs
               profile
               rootPath
+              stablePkgs
               ;
           };
           modules = [

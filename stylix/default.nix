@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ stablePkgs, ... }:
 let
   mono-font = {
-    package = pkgs.nerd-fonts.comic-shanns-mono;
+    package = stablePkgs.nerd-fonts.comic-shanns-mono;
     name = "ComicShannsMono Nerd Font";
   };
 in
@@ -22,7 +22,7 @@ in
     # Cursors
     cursor = {
       name = "Vimix-cursors";
-      package = pkgs.vimix-cursors;
+      package = stablePkgs.vimix-cursors;
       #name = "BreezeX-RosePine-Linux";
       #package = pkgs.rose-pine-cursor;
 
@@ -35,7 +35,7 @@ in
       sansSerif = mono-font;
       monospace = mono-font;
       emoji = {
-        package = pkgs.twitter-color-emoji;
+        package = stablePkgs.twitter-color-emoji;
         name = "Twitter Color Emoji";
       };
     };

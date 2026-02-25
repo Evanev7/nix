@@ -40,14 +40,6 @@
     localNetworkGameTransfers.openFirewall = true;
   };
 
-  users.users.${profile.username} = {
-    openssh.authorizedKeys.keyFiles = [
-      (rootPath + /ssh/gtnh.key.pub)
-      (rootPath + /ssh/muko.pub)
-      (rootPath + /ssh/typhon.pub)
-    ];
-  };
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

@@ -9,12 +9,12 @@
   options.cady = {
     desktop = lib.mkOption {
       type = lib.types.enum [
+        "None"
         "Gnome"
         "Plasma"
         "Hyprland"
       ];
-      default = "Gnome";
-      description = "Cady style preconfigured DE (Only Gnome or Plasma for now)";
+      default = "None";
     };
   };
 

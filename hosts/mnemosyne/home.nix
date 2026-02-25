@@ -13,13 +13,12 @@
     };
     home = {
       defaults = true;
-      userDirsOverride = true;
     };
   };
 
   home = {
     username = "mnemosyne";
     homeDirectory = "/home/mnemosyne";
-    stateVersion = "25.05";
+    stateVersion = "25.11";
   };
 }
