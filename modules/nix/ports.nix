@@ -95,6 +95,7 @@
           (rootPath + /ssh/muko.pub)
           (rootPath + /ssh/typhon.pub)
           (rootPath + /ssh/maia.pub)
+          (rootPath + /ssh/mnemosyne.pub)
         ];
       };
     })

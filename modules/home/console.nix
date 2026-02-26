@@ -92,10 +92,10 @@
 
       programs.ssh = {
         matchBlocks =
-          lib.genAttrs [ "typhon" "mnemosyne" "maia" "muko" ] (name: {
+          lib.genAttrs [ "mnemosyne" ] (name: {
             host = name;
             user = name;
-            hostname = "${name}@${name}.caedy.net";
+            hostname = "${name}@caedy.net";
             port = 9125;
           })
           // {
