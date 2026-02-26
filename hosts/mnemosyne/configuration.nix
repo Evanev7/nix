@@ -12,6 +12,15 @@
     sonarr.enable = true;
     bazarr.enable = true;
     jellyfin.enable = true;
+    fail2ban.enable = true;
+    caddy.enable = true;
+    caddy.virtualHosts."http://www.caedy.net".extraConfig = ''
+      respond "omg hiiiiiiiiiiii"
+    '';
+    caddy.virtualHosts."jellyfin.caedy.net".extraConfig = ''
+      reverse_proxy 127.0.0.1:8096
+    '';
+    caddy.email = "evanev7@gmail.com";
   };
 
   cady = {
@@ -20,6 +29,7 @@
     # Firewall + port forwarding
     ports.enable = true;
     ports.both = [ ];
+    ports.tcp = [ 80 443 ];
     ssh.enable = true;
     # Desktop Environment
     autoUpdate = true;
@@ -37,10 +47,11 @@
   # cloudflare ddns
   services.cloudflare-ddns = {
     enable = true;
-    credentialsFile = "/run/secrets/cloudflare_ddns_token";
+    credentialsFile = "/secrets/cloudflare_ddns_token";
     ip6Domains = [
       "www.caedy.net"
       "caedy.net"
+      "jellyfin.caedy.net"
     ];
 
   };
