@@ -15,7 +15,6 @@
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "ahci"
-    "usb_storage"
     "sd_mod"
     "rtsx_usb_sdmmc"
   ];
@@ -29,8 +28,12 @@
   };
 
   fileSystems."/boot" = {
-    device = "systemd-1";
-    fsType = "autofs";
+    device = "/dev/disk/by-uuid/5CCC-A40F";
+    fsType = "vfat";
+    options = [
+      "fmask=0022"
+      "dmask=0022"
+    ];
   };
 
   swapDevices = [ { device = "/dev/disk/by-uuid/83a95686-b9f2-4ae7-b7f6-bb53a9634566"; } ];

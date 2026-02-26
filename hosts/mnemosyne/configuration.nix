@@ -5,6 +5,15 @@
   ...
 }:
 {
+  services = {
+    radarr.enable = true;
+    lidarr.enable = true;
+    prowlarr.enable = true;
+    sonarr.enable = true;
+    bazarr.enable = true;
+    jellyfin.enable = true;
+  };
+
   cady = {
     defaults = true;
     # My modules!!
