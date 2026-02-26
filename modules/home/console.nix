@@ -91,11 +91,13 @@
       };
 
       programs.ssh = {
+        enable = true;
+        enableDefaultConfig = false;
         matchBlocks =
           lib.genAttrs [ "mnemosyne" ] (name: {
             host = name;
             user = name;
-            hostname = "${name}@caedy.net";
+            hostname = "caedy.net";
             port = 9125;
           })
           // {
