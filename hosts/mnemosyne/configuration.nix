@@ -13,14 +13,47 @@
     bazarr.enable = true;
     jellyfin.enable = true;
     fail2ban.enable = true;
-    caddy.enable = true;
-    caddy.virtualHosts."http://www.caedy.net".extraConfig = ''
-      respond "omg hiiiiiiiiiiii"
-    '';
-    caddy.virtualHosts."jellyfin.caedy.net".extraConfig = ''
-      reverse_proxy 127.0.0.1:8096
-    '';
-    caddy.email = "evanev7@gmail.com";
+    caddy = {
+      enable = true;
+      virtualHosts = {
+        "www.caedy.net".extraConfig = ''
+          respond "omg hiiiiiiiiiiii"
+        '';
+        "caedy.net".extraConfig = ''
+          respond "omg hiiiiiiiiiiii"
+        '';
+        "jellyfin.caedy.net".extraConfig = ''
+          reverse_proxy 127.0.0.1:8096
+        '';
+        "radarr.caedy.net".extraConfig = ''
+          reverse_proxy 127.0.0.1:7878
+        '';
+        "sonarr.caedy.net".extraConfig = ''
+          reverse_proxy 127.0.0.1:8989
+        '';
+        "lidarr.caedy.net".extraConfig = ''
+          reverse_proxy 127.0.0.1:8686
+        '';
+        "prowlarr.caedy.net".extraConfig = ''
+          reverse_proxy 127.0.0.1:9696
+        '';
+      };
+      email = "evanev7@gmail.com";
+    };
+  };
+  networking.wireguard = {
+    enable = true;
+    interfaces.wg0 = {
+      privateKeyFile = "/secrets/wireguard";
+      listenPort = 51820;
+      ips = [ "10.91.25.1/24" ];
+    };
+  };
+  networking.nat = {
+    enable = true;
+    enableIPv6 = true;
+    externalInterface = "enp2s0";
+    internalInterfaces = [ "wg0" ];
   };
 
   cady = {
@@ -28,8 +61,8 @@
     # My modules!!
     # Firewall + port forwarding
     ports.enable = true;
-    ports.both = [ ];
-    ports.tcp = [ 80 443 ];
+    ports.both = [ 80 443 ];
+    ports.tcp = [ ];
     ssh.enable = true;
     # Desktop Environment
     autoUpdate = true;
