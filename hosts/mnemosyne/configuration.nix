@@ -41,19 +41,22 @@
       email = "evanev7@gmail.com";
     };
   };
-  networking.wireguard = {
-    enable = true;
-    interfaces.wg0 = {
-      privateKeyFile = "/secrets/wireguard";
-      listenPort = 51820;
-      ips = [ "10.91.25.1/24" ];
+  networking = {
+    wireguard = {
+      enable = true;
+      interfaces.wg0 = {
+        privateKeyFile = "/secrets/wireguard";
+        listenPort = 51820;
+        ips = [ "10.91.25.1/24" ];
+      };
     };
-  };
-  networking.nat = {
-    enable = true;
-    enableIPv6 = true;
-    externalInterface = "enp2s0";
-    internalInterfaces = [ "wg0" ];
+    nat = {
+      enable = true;
+      enableIPv6 = true;
+      externalInterface = "enp2s0";
+      internalInterfaces = [ "wg0" ];
+    };
+    nftables.enable = true;
   };
 
   cady = {
@@ -61,7 +64,10 @@
     # My modules!!
     # Firewall + port forwarding
     ports.enable = true;
-    ports.both = [ 80 443 ];
+    ports.both = [
+      80
+      443
+    ];
     ports.tcp = [ ];
     ssh.enable = true;
     # Desktop Environment
