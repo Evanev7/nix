@@ -36,6 +36,15 @@
     ];
   };
 
+  fileSystems."/storage" = {
+    device = "/dev/disk/by-uuid/1b30c5b7-cd3e-42f0-9cce-20d551464328";
+    fsType = "btrfs";
+    options = [
+      "noatime"
+      "compress=zstd"
+    ];
+  };
+
   swapDevices = [ { device = "/dev/disk/by-uuid/83a95686-b9f2-4ae7-b7f6-bb53a9634566"; } ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
