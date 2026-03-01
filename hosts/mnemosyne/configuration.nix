@@ -13,9 +13,17 @@
     bazarr.enable = true;
     jellyfin.enable = true;
     fail2ban.enable = true;
+    qbittorrent.enable = true;
     caddy = {
       enable = true;
       virtualHosts = {
+        "192.168.*".extraConfig = ''
+          @qbit {
+            client_ip 192.168.0.0/16
+            path /qbit
+          }
+          reverse_proxy @qbit 127.0.0.1:8080
+        '';
         "www.caedy.net".extraConfig = ''
           respond "omg hiiiiiiiiiiii"
         '';
