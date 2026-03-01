@@ -15,6 +15,9 @@
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    
+  disko.url = "github:nix-community/disko/latest";
+  disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -60,6 +63,7 @@
             ./modules/nix
             stylix.nixosModules.stylix
             ./stylix
+            inputs.disko.nixosModules.disko
           ]
           ++ profile.extraModules;
         };

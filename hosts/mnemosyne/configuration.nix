@@ -27,6 +27,7 @@
         '';
         "radarr.caedy.net".extraConfig = ''
           reverse_proxy 127.0.0.1:7878
+          tls internal
         '';
         "sonarr.caedy.net".extraConfig = ''
           reverse_proxy 127.0.0.1:8989
@@ -91,6 +92,7 @@
       "www.caedy.net"
       "caedy.net"
       "jellyfin.caedy.net"
+      "radarr.caedy.net"
     ];
 
   };
