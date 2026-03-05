@@ -14,16 +14,14 @@
     jellyfin.enable = true;
     fail2ban.enable = true;
     qbittorrent.enable = true;
+    qbittorrent.serverConfig = {
+      Preferences = {
+        Username = "mnemosyne";
+      };
+    };
     caddy = {
       enable = true;
       virtualHosts = {
-        "192.168.*".extraConfig = ''
-          @qbit {
-            client_ip 192.168.0.0/16
-            path /qbit
-          }
-          reverse_proxy @qbit 127.0.0.1:8080
-        '';
         "www.caedy.net".extraConfig = ''
           respond "omg hiiiiiiiiiiii"
         '';
@@ -35,7 +33,6 @@
         '';
         "radarr.caedy.net".extraConfig = ''
           reverse_proxy 127.0.0.1:7878
-          tls internal
         '';
         "sonarr.caedy.net".extraConfig = ''
           reverse_proxy 127.0.0.1:8989
@@ -43,8 +40,14 @@
         "lidarr.caedy.net".extraConfig = ''
           reverse_proxy 127.0.0.1:8686
         '';
+        "bazarr.caedy.net".extraConfig = ''
+          reverse_proxy 127.0.0.1:6767
+        '';
         "prowlarr.caedy.net".extraConfig = ''
           reverse_proxy 127.0.0.1:9696
+        '';
+        "qbit.caedy.net".extraConfig = ''
+          reverse_proxy 127.0.0.1:8080
         '';
       };
       email = "evanev7@gmail.com";
@@ -72,12 +75,14 @@
     defaults = true;
     # My modules!!
     # Firewall + port forwarding
-    ports.enable = true;
-    ports.both = [
-      80
-      443
-    ];
-    ports.tcp = [ ];
+    ports = {
+      enable = true;
+      both = [
+        80
+        443
+      ];
+      tcp = [ ];
+    };
     ssh.enable = true;
     # Desktop Environment
     autoUpdate = true;
@@ -101,6 +106,11 @@
       "caedy.net"
       "jellyfin.caedy.net"
       "radarr.caedy.net"
+      "sonarr.caedy.net"
+      "lidarr.caedy.net"
+      "bazarr.caedy.net"
+      "prowlarr.caedy.net"
+      "qbit.caedy.net"
     ];
 
   };
