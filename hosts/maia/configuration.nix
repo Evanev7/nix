@@ -11,6 +11,8 @@
     # My modules!!
     ssh.enable = true;
     tailscale.enable = true;
+    ports.enable = true;
+    ports.udp = [ 6696 ];
     #nextdns.enable = true;
     # Desktop Environment
     desktop = "Plasma";

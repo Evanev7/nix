@@ -119,6 +119,10 @@
           "nix-command"
           "flakes"
         ];
+        trusted-users = [
+          profile.username
+          "root"
+        ];
         trusted-public-keys = [ "exo.cachix.org-1:okq7hl624TBeAR3kV+g39dUFSiaZgLRkLsFBCuJ2NZI=" ];
         substituters = [ "https://exo.cachix.org" ];
       };
