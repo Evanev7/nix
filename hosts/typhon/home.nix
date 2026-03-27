@@ -16,7 +16,7 @@
     libreoffice
     prismlauncher
     blender
-    youtube-music
+    pear-desktop
     zed-editor
     r2modman
   ];

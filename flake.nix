@@ -27,7 +27,6 @@
       ...
     }@inputs:
     let
-      inherit (self) outputs;
       system = "x86_64-linux";
       rootPath = ./.;
       pkgs = inputs.nixpkgs.legacyPackages.${system};
@@ -48,7 +47,6 @@
           specialArgs = {
             inherit
               inputs
-              outputs
               profile
               rootPath
               stablePkgs
@@ -71,7 +69,6 @@
           extraSpecialArgs = {
             inherit
               inputs
-              outputs
               profile
               rootPath
               stablePkgs

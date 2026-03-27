@@ -26,7 +26,6 @@
     vlc
     tree
     bat
-    youtube-music
   ];
 
   cady = {

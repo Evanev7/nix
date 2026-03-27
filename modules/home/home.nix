@@ -1,8 +1,5 @@
 {
-  inputs,
-  outputs,
   lib,
-  pkgs,
   config,
   ...
 }:
@@ -33,16 +30,17 @@
         {
           enable = true;
           createDirectories = true;
+          setSessionVariables = true;
           desktop = "${config.home.homeDirectory}/desktop";
           documents = "${config.home.homeDirectory}" + filesDir;
           download = "${config.home.homeDirectory}/downloads";
           music = "${config.home.homeDirectory}" + filesDir;
           pictures = "${config.home.homeDirectory}" + filesDir;
           publicShare = "${config.home.homeDirectory}/mysc/public";
-          templates = "${config.home.homeDirectory}/mysc/templates";
+          templates = "${config.home.homeDirectory}" + filesDir;
           videos = "${config.home.homeDirectory}" + filesDir;
           extraConfig = {
-            XDG_PROJECTS_DIR = "${config.home.homeDirectory}/projects";
+            PROJECTS = "${config.home.homeDirectory}/projects";
           };
         };
       gtk.gtk3.bookmarks = builtins.map (file: "file://${config.home.homeDirectory}/${file}") [
@@ -52,6 +50,7 @@
         "nixos"
         "mysc/files"
       ];
+      gtk.gtk4.theme = null;
     })
   ];
 }

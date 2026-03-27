@@ -16,7 +16,6 @@
     parsec-bin
     vlc
     bat
-    youtube-music
     snapshot
     qbittorrent
     zed-editor
