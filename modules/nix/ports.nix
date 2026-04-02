@@ -56,12 +56,12 @@
     (lib.mkIf config.cady.nextdns.enable {
       # NextDNS setup
       networking.nameservers = config.cady.nextdns.servers;
-      services.resolved = {
-        enable = true;
-        dnssec = "true";
-        domains = [ "~." ];
-        fallbackDns = config.cady.nextdns.servers;
-        dnsovertls = "true";
+      services.resolved.enable = true;
+      services.resolved.settings.Resolve = {
+        DNSSEC = "true";
+        Domains = [ "~." ];
+        FallbackDns = config.cady.nextdns.servers;
+        DNSOverTLS = "true";
       };
     })
     (lib.mkIf config.cady.ports.enable (

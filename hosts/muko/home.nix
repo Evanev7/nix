@@ -29,10 +29,7 @@
   ];
 
   cady = {
-    firefox = {
-      enable = true;
-      userChromePath = rootPath + /config/firefox/userChrome.css;
-    };
+    firefox.enable = true;
     console = {
       defaults = true;
       starship = {

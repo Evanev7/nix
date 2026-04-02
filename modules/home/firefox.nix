@@ -2,7 +2,7 @@
   config,
   pkgs,
   lib,
-  ...
+  inputs,
 }:
 
 # Thanks sleepy@discourse.nixos.org!
@@ -30,8 +30,8 @@
       # ---- sidebery is stored in firefox sync ----
       # My own code, no longer sleepy.
       # https://discourse.nixos.org/t/anyone-using-firefox-gnome-theme-successfully-with-nixos-home-manager/19248 massively helped!!
-      home.file.".mozilla/firefox/default/chrome/userChrome.css".source =
-        config.cady.firefox.userChromePath;
+      home.file.".config/mozilla/firefox/default/chrome/userChrome.css".source =
+        inputs.self + /config/firefox/userChrome.css;
 
       programs.firefox = {
         enable = true;
