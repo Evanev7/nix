@@ -3,6 +3,7 @@
   pkgs,
   lib,
   inputs,
+  ...
 }:
 
 # Thanks sleepy@discourse.nixos.org!

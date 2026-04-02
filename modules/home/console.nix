@@ -16,8 +16,6 @@
           ".." = "cd ..";
           "..." = "cd ../..";
           "rgf" = "rg --files | rg";
-          "tree" =
-            "rg --files | ${pkgs.tree}/bin/tree -CF --dirsfirst --fromfile | sed -e 's/└/╚/g' -e 's/│/║/g' -e 's/─/═/g' -e 's/├/╠/g'";
         };
       };
       starship = {
@@ -43,6 +41,10 @@
           if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
             exec tmux a
           fi
+          tree() {
+            ${lib.getExe pkgs.tree} -CF --dirsfirst "$@" | sed -e 's/└/╚/g' -e 's/│/║/g' -e 's/─/═/g' -e 's/├/╠/g'
+          }
+          export -f tree
         '';
       };
 

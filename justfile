@@ -1,6 +1,4 @@
-default: show update nix home
-show:
-        git diff -U0 2>&1
+default: update nix home
 update:
         nix flake update
 nix:

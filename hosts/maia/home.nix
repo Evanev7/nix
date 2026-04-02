@@ -1,7 +1,7 @@
 {
   lib,
   pkgs,
-  rootPath,
+  inputs,
   ...
 }:
 {
@@ -44,7 +44,7 @@
     package = pkgs.vscodium.fhs;
   };
   xdg.configFile."VSCodium/User/settings.json".source = lib.mkForce (
-    rootPath + /config/codium/settings.json
+    inputs.self + /config/codium/settings.json
   );
 
   home = {

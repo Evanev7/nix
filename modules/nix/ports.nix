@@ -2,7 +2,7 @@
   lib,
   config,
   profile,
-  rootPath,
+  inputs,
   ...
 }:
 {
@@ -91,11 +91,11 @@
       };
       users.users.${profile.username} = {
         openssh.authorizedKeys.keyFiles = [
-          (rootPath + /ssh/gtnh.key.pub)
-          (rootPath + /ssh/muko.pub)
-          (rootPath + /ssh/typhon.pub)
-          (rootPath + /ssh/maia.pub)
-          (rootPath + /ssh/mnemosyne.pub)
+          (inputs.self + /ssh/gtnh.key.pub)
+          (inputs.self + /ssh/muko.pub)
+          (inputs.self + /ssh/typhon.pub)
+          (inputs.self + /ssh/maia.pub)
+          (inputs.self + /ssh/mnemosyne.pub)
         ];
       };
     })

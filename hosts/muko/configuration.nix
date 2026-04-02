@@ -1,8 +1,5 @@
 {
   pkgs,
-  profile,
-  rootPath,
-  inputs,
   ...
 }:
 {

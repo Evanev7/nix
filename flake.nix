@@ -28,7 +28,6 @@
     }@inputs:
     let
       system = "x86_64-linux";
-      rootPath = ./.;
       pkgs = inputs.nixpkgs.legacyPackages.${system};
       stablePkgs = inputs.stablepkgs.legacyPackages.${system};
 
@@ -48,7 +47,6 @@
             inherit
               inputs
               profile
-              rootPath
               stablePkgs
               ;
           };
@@ -70,7 +68,6 @@
             inherit
               inputs
               profile
-              rootPath
               stablePkgs
               ;
           };
