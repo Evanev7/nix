@@ -72,9 +72,7 @@
             ];
           }
         ];
-        lsp = {
-          enable = true;
-        };
+        lsp.enable = true;
         spellcheck.enable = true;
         visuals = {
           nvim-scrollbar.enable = true;
@@ -100,6 +98,7 @@
           bash.enable = true;
           css.enable = true;
           go.enable = true;
+          qml.enable = true;
         };
       };
     };

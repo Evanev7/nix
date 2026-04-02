@@ -1,8 +1,4 @@
-{
-  lib,
-  config,
-  ...
-}:
+{ lib, config, ... }:
 {
   options.cady.home = {
     defaults = lib.mkEnableOption "Cady Universal Home Defaults!!";

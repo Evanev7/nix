@@ -19,6 +19,7 @@
     snapshot
     qbittorrent
     zed-editor
+    file
   ];
 
   cady = {

@@ -5,17 +5,10 @@
   ...
 }:
 {
-  options.cady.amdgpu.enable = lib.mkEnableOption "AMD Graphics Settings";
   options.cady.nvidia.enable = lib.mkEnableOption "Nvidia Graphics Settings";
 
-  config = lib.mkMerge ([
-    (lib.mkIf config.cady.amdgpu.enable {
-      hardware.graphics = {
-        enable = true;
-        enable32Bit = true;
-      };
-    })
-    (lib.mkIf config.cady.nvidia.enable {
+  config = 
+    lib.mkIf config.cady.nvidia.enable {
       # Accept nvidia licenses
       nixpkgs.config.nvidia.acceptLicense = true;
 
@@ -95,7 +88,5 @@
         vulkan-loader
         vulkan-tools
       ];
-    })
-  ]);
-
+    };
 }
