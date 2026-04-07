@@ -43,13 +43,7 @@
       mkNixosConfiguration =
         profile:
         nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit
-              inputs
-              profile
-              stablePkgs
-              ;
-          };
+          specialArgs = { inherit inputs profile stablePkgs; };
           modules = [
             (./hosts + "/${profile.hostname}" + /configuration.nix)
             (./hosts + "/${profile.hostname}" + /hardware-configuration.nix)
@@ -64,13 +58,7 @@
         profile:
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = {
-            inherit
-              inputs
-              profile
-              stablePkgs
-              ;
-          };
+          extraSpecialArgs = { inherit inputs profile stablePkgs; };
           modules = [
             ./modules/home
             (./hosts + "/${profile.hostname}" + /home.nix)

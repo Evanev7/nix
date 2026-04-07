@@ -3,7 +3,7 @@
   cady = {
     defaults = true;
     # My modules!!
-    nvidia.enable = true;
+    # nvidia.enable = true;
     ssh.enable = true;
     tailscale.enable = true;
     ports.enable = true;
