@@ -36,6 +36,7 @@
 
       programs.firefox = {
         enable = true;
+        configPath = "${config.xdg.configHome}/mozilla/firefox";
         package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
           extraPolicies = {
             DisableTelemetry = true;
