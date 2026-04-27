@@ -93,7 +93,10 @@
           };
           nix.enable = true;
           clang.enable = true;
-          python.enable = true;
+          python = {
+            enable = true;
+            extraDiagnostics.enable = false;
+          };
           lua.enable = true;
           bash.enable = true;
           css.enable = true;
