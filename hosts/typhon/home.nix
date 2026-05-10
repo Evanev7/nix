@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   home.packages = with pkgs; [
     nixfmt
@@ -18,6 +18,7 @@
     blender
     pear-desktop
     zed-editor
+    (inputs.nix-jetbrains-plugins.lib.buildIdeWithPlugins pkgs jetbrains.idea-oss ["IdeaVIM"])
     r2modman
   ];
 
