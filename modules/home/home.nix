@@ -8,6 +8,9 @@
   config = lib.mkMerge [
     (lib.mkIf config.cady.home.defaults {
       nixpkgs.config.allowUnfree = true;
+                        
+      # clears an evaluation warning
+      wayland.windowManager.hyprland.configType = "lua";
 
       # Enable home-manager
       programs.home-manager.enable = true;

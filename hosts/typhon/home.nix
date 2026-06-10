@@ -40,10 +40,7 @@
 
   services.easyeffects.enable = true;
 
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscodium.fhs;
-  };
+  programs.vscodium.enable = true;
 
   home = {
     username = "typhon";

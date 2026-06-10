@@ -1,9 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   cady = {
     defaults = true;
     # My modules!!
-    # nvidia.enable = true;
     ssh.enable = true;
     tailscale.enable = true;
     ports.enable = true;
@@ -12,7 +11,9 @@
     # Desktop Environment
     desktop = "Plasma";
     autoUpdate = true;
+    #nvidia.enable = true;
   };
+  #hardware.nvidia.open = lib.mkForce true;
 
   environment.systemPackages = with pkgs; [
     wget

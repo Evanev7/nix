@@ -44,11 +44,8 @@
     };
   };
 
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscodium.fhs;
-    #    userSettings = import ./config/codium/settings.nix;
-  };
+  programs.vscodium.enable = true;
+  #    userSettings = import ./config/codium/settings.nix;
   xdg.configFile."VSCodium/User/settings.json".source = lib.mkForce (
     inputs.self + /config/codium/settings.json
   );

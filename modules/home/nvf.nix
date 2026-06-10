@@ -102,6 +102,7 @@
           css.enable = true;
           go.enable = true;
           qml.enable = true;
+          java.enable = true;
         };
       };
     };

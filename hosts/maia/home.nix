@@ -19,7 +19,9 @@
     snapshot
     qbittorrent
     zed-editor
+    (inputs.nix-jetbrains-plugins.lib.buildIdeWithPlugins pkgs jetbrains.idea-oss ["IdeaVIM" "al.aoli.intellijdirenv"])
     file
+    aseprite
   ];
 
   cady = {
@@ -39,10 +41,7 @@
   };
   services.easyeffects.enable = true;
 
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscodium.fhs;
-  };
+  programs.vscodium.enable = true;
   xdg.configFile."VSCodium/User/settings.json".source = lib.mkForce (
     inputs.self + /config/codium/settings.json
   );
