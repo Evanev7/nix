@@ -1,5 +1,4 @@
-{ lib, config, ... }:
-{
+{ lib, config, ... }: {
   options.cady.home = {
     defaults = lib.mkEnableOption "Cady Universal Home Defaults!!";
     userDirsOverride = lib.mkEnableOption "apparently i hate uppercase now";
@@ -8,7 +7,7 @@
   config = lib.mkMerge [
     (lib.mkIf config.cady.home.defaults {
       nixpkgs.config.allowUnfree = true;
-                        
+
       # clears an evaluation warning
       wayland.windowManager.hyprland.configType = "lua";
 
@@ -49,7 +48,7 @@
         "nixos"
         "mysc/files"
       ];
-      gtk.gtk4.theme = null;
+      # gtk.gtk4.theme = null;
     })
   ];
 }

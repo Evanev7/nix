@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   cady = {
     defaults = true;
     # My modules!!

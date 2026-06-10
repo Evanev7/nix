@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   services = {
     radarr.enable = true;
     lidarr.enable = true;

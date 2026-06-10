@@ -19,7 +19,10 @@
     snapshot
     qbittorrent
     zed-editor
-    (inputs.nix-jetbrains-plugins.lib.buildIdeWithPlugins pkgs jetbrains.idea-oss ["IdeaVIM" "al.aoli.intellijdirenv"])
+    (inputs.nix-jetbrains-plugins.lib.buildIdeWithPlugins pkgs jetbrains.idea-oss [
+      "IdeaVIM"
+      "al.aoli.intellijdirenv"
+    ])
     file
     aseprite
   ];
