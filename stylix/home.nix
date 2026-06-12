@@ -2,7 +2,7 @@
   stylix = {
     targets = {
       firefox.enable = false;
-      vscode.enable = false;
+      vscodium.enable = false;
     };
   };
 }
