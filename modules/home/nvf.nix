@@ -103,6 +103,7 @@
           qml.enable = true;
           java.enable = true;
           zig.enable = true;
+          typescript.enable = true;
         };
       };
     };

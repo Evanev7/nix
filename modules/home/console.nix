@@ -45,10 +45,17 @@
             ${lib.getExe pkgs.tree} -CF --dirsfirst "$@" | sed -e 's/└/╚/g' -e 's/│/║/g' -e 's/─/═/g' -e 's/├/╠/g'
           }
           export -f tree
+          shell() {
+            ${lib.getExe pkgs.nix} shell "''${@/#/nixpkgs#}"
+          }
+          export -f shell
+          run() {
+            ${lib.getExe pkgs.nix} run "''${@/#/nixpkgs#}"
+          }
+          export -f run
         '';
       };
 
-      services.lorri.enable = true;
       programs.direnv = {
         enable = true;
         enableBashIntegration = true;

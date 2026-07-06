@@ -5,7 +5,10 @@
     ssh.enable = true;
     tailscale.enable = true;
     ports.enable = true;
-    ports.udp = [ 6696 ];
+    ports.udp = [
+      6696
+      34197
+    ];
     #nextdns.enable = true;
     # Desktop Environment
     desktop = "Plasma";
