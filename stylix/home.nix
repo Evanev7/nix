@@ -5,4 +5,5 @@
       vscodium.enable = false;
     };
   };
+  home.pointerCursor.enable = true;
 }
