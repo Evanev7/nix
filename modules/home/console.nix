@@ -121,7 +121,15 @@
       programs.tmux = {
         enable = true;
         mouse = true;
-        extraConfig = "";
+        extraConfig = ''
+          set -s extended-keys on
+          set -s extended-keys-format csi-u
+          set -s set-clipboard external
+          set -g allow-passthrough on
+          set -as terminal-features ',xterm-kitty:extkeys,hyperlinks,osc7,overline'
+        '';
+        focusEvents = true;
+        terminal = "tmux-256color";
         baseIndex = 1;
         historyLimit = 100000;
         newSession = true;
@@ -129,7 +137,6 @@
         plugins = with pkgs.tmuxPlugins; [
           vim-tmux-navigator
           better-mouse-mode
-          sidebar
         ];
       };
 
@@ -170,6 +177,7 @@
     (lib.mkIf (config.cady.console.defaults && config.cady.console.starship.enable) {
       programs.starship = {
         enable = true;
+        presets = [ "plain-text-symbols" "no-runtime-versions" ];
         settings =
           { }
           // (

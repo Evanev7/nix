@@ -81,7 +81,7 @@
         };
         statusline.lualine.enable = true;
         telescope.enable = true;
-        languages = {
+        languages = rec {
           enableTreesitter = true;
           enableFormat = true;
           enableExtraDiagnostics = true;
@@ -91,7 +91,10 @@
             extensions.crates-nvim.enable = true;
           };
           nix.enable = true;
-          clang.enable = true;
+          clang = {
+            enable = true;
+            extraDiagnostics.enable = false;
+          };
           python = {
             enable = true;
             extraDiagnostics.enable = false;
@@ -103,7 +106,16 @@
           qml.enable = true;
           java.enable = true;
           zig.enable = true;
-          typescript.enable = true;
+          typescript = {
+            enable = true;
+            lsp.servers = [ "deno" ];
+            format.type = [ "deno" ];
+          };
+          tsx = typescript;
+          sql = {
+            enable = true;
+            extensions.sqls-nvim.enable = true;
+          };
         };
       };
     };
