@@ -25,6 +25,7 @@
     ])
     file
     aseprite
+    glow
   ];
 
   cady = {

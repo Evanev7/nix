@@ -3,6 +3,7 @@
   lib,
   config,
   inputs,
+  pkgs,
   ...
 }:
 {
@@ -56,7 +57,6 @@
       security.sudo.wheelNeedsPassword = false;
       security.sudo.configFile = "${profile.username} ALL=(ALL) NOPASSWD:ALL";
       security.polkit.adminIdentities = [ ];
-      systemd.user.extraConfig = "DefaultNoNewPrivileges=no";
 
       # Allow unfree packages
       nixpkgs.config.allowUnfree = true;
@@ -92,7 +92,10 @@
       console.keyMap = "uk";
 
       # Enable CUPS to print documents.
-      services.printing.enable = true;
+      services.printing = {
+        enable = true;
+        drivers = [ pkgs.foo2zjs ];
+      };
 
       # Enable sound with pipewire.
       services.pulseaudio.enable = false;

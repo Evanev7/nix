@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: {
+{ pkgs, ... }: {
   cady = {
     defaults = true;
     # My modules!!
@@ -7,6 +7,7 @@
     ports.enable = true;
     ports.udp = [
       6696
+      34196
       34197
     ];
     #nextdns.enable = true;

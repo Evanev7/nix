@@ -45,7 +45,7 @@
       mkNixosConfiguration =
         profile:
         nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs profile stablePkgs; };
+          specialArgs = { inherit inputs profile stablePkgs; isHome = false; };
           modules = [
             (./hosts + "/${profile.hostname}" + /configuration.nix)
             (./hosts + "/${profile.hostname}" + /hardware-configuration.nix)
@@ -60,14 +60,13 @@
         profile:
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          extraSpecialArgs = { inherit inputs profile stablePkgs; };
+          extraSpecialArgs = { inherit inputs profile stablePkgs; isHome = true; };
           modules = [
             ./modules/home
             (./hosts + "/${profile.hostname}" + /home.nix)
             stylix.homeModules.stylix
             nvf.homeManagerModules.default
             ./stylix
-            ./stylix/home.nix
           ]
           ++ profile.extraHomeModules;
         };

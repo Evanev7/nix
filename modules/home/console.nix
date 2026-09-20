@@ -127,6 +127,8 @@
           set -s set-clipboard external
           set -g allow-passthrough on
           set -as terminal-features ',xterm-kitty:extkeys,hyperlinks,osc7,overline'
+          bind '"' split-window -c "#{pane_current_path}"
+          bind % split-window -h -c "#{pane_current_path}"
         '';
         focusEvents = true;
         terminal = "tmux-256color";
@@ -148,10 +150,10 @@
       programs.lazygit = {
         enable = true;
         settings = {
-          git.pagers = [
+          git.diffRenderers = [
             {
               colorArg = "always";
-              pager = "delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format=\"lazygit-edit://{path}:{line}\"";
+              command = "delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format=\"lazygit-edit://{path}:{line}\"";
             }
           ];
           gui.nerdFontsVersion = "3";
@@ -177,7 +179,10 @@
     (lib.mkIf (config.cady.console.defaults && config.cady.console.starship.enable) {
       programs.starship = {
         enable = true;
-        presets = [ "plain-text-symbols" "no-runtime-versions" ];
+        presets = [
+          "plain-text-symbols"
+          "no-runtime-versions"
+        ];
         settings =
           { }
           // (
