@@ -17,6 +17,7 @@
     #nvidia.enable = true;
   };
   #hardware.nvidia.open = lib.mkForce true;
+  hardware.bluetooth.enable = true;
 
   environment.systemPackages = with pkgs; [
     wget

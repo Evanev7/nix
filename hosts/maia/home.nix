@@ -26,6 +26,7 @@
     file
     aseprite
     glow
+    prismlauncher
   ];
 
   cady = {
