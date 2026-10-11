@@ -106,11 +106,7 @@
           qml.enable = true;
           java.enable = true;
           zig.enable = true;
-          typescript = {
-            enable = true;
-            lsp.servers = [ "deno" ];
-            format.type = [ "deno" ];
-          };
+          typescript.enable = true;
           tsx = typescript;
           sql = {
             enable = true;
