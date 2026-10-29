@@ -38,6 +38,7 @@
         enable = true;
         shellAliases = config.cady.console.shellAliases;
         bashrcExtra = ''
+          shopt -s histverify
           if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
             exec tmux a
           fi
