@@ -31,8 +31,6 @@
     xdg-user-dirs
     just
     unzip
-
-    vimix-cursors
   ];
   # microphone fix
   services.pipewire.wireplumber.extraConfig.no-ucm = {
@@ -49,6 +47,7 @@
   programs.steam = {
     enable = true;
     localNetworkGameTransfers.openFirewall = true;
+    extraPackages = with pkgs; [ nss nspr at-spi2-core libxcomposite ];
   };
 
   # Bootloader.

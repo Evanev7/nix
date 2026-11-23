@@ -34,6 +34,8 @@ in
     targets = {
       firefox.enable = false;
       vscodium.enable = false;
+      # removed from nixpkgs & hm
+      wayprompt.enable = false;
     };
   };
 } // lib.optionalAttrs isHome {
